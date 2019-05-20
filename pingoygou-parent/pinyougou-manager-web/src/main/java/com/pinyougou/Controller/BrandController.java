@@ -19,4 +19,5 @@ public class BrandController {
         List<TbBrand> all = service.findAll();
         return all;
     }
+
 }
