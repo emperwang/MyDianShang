@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>angularJS入门demo-4 控制器</title>
+	<script src="angular.min.js"></script>
+	<script>
+		//建立模块
+		var app=angular.module("myapp",[]); 
+		//创建控制器，$scope就是控制层域视图层之间交换数据的桥梁
+		app.controller("mycontroller",function($scope){
+			$scope.add=function(){
+				return parseInt($scope.x) + parseInt($scope.y);
+			}
+		});
+		
+	</script>
+</head>
+
+<body ng-app="myapp" ng-controller="mycontroller">
+第一个数: <input ng-model="x"> 第二个数:<input ng-model="y">
+{{add()}}
+</body>
+
+</html>
