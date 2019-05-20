@@ -1,0 +1,15 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: admin
+    url: jdbc:mysql://localhost:3306/pinyougoudb?characterEncoding=utf-8&useSSL=true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+logging:
+  level:
+    root: info
