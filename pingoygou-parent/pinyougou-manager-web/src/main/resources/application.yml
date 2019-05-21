@@ -1,2 +1,10 @@
 server:
   port: 9100
+spring:  # spring.devtools可以配置热加载相关的配置
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      poll-interval: 500ms
+      exclude: /resources
+
