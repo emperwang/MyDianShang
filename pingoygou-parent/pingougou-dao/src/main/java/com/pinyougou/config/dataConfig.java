@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
 @Configuration
-@ImportResource(value = {"SqlMapConfig.xml"})
+//@ImportResource(value = {"SqlMapConfig.xml"})
 @MapperScan(basePackages = {"com.pinyougou.mapper"})
 public class dataConfig {
 
