@@ -8,4 +8,7 @@ import java.util.List;
 public interface BrandService {
     List<TbBrand> findAll();
     PageResult findByPage(Integer page,Integer pagesize);
+    int add(TbBrand brand);
+    int updateBrand(TbBrand brand);
+    TbBrand findById(Integer id);
 }

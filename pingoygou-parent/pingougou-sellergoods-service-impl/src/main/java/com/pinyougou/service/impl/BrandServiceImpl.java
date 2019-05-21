@@ -33,4 +33,22 @@ public class BrandServiceImpl implements BrandService {
         long total = pageInfo.getTotal();
         return new PageResult(total,list);
     }
+
+    @Override
+    public int add(TbBrand brand) {
+        int insert = mapper.insert(brand);
+        return insert;
+    }
+
+    @Override
+    public int updateBrand(TbBrand brand) {
+        int i = mapper.updateByPrimaryKey(brand);
+        return i;
+    }
+
+    @Override
+    public TbBrand findById(Integer id) {
+        TbBrand tbBrand = mapper.selectByPrimaryKey(Long.parseLong(id.toString()));
+        return tbBrand;
+    }
 }

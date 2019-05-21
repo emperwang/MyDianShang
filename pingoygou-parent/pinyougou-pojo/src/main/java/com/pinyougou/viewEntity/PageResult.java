@@ -3,6 +3,9 @@ package com.pinyougou.viewEntity;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ *  前台分页显示的视图
+ */
 public class PageResult implements Serializable {
 
     private Long total;

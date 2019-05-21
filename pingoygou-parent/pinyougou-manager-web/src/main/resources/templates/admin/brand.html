@@ -53,6 +53,40 @@
 					$scope.paginationConf.totalItems=data.total;
 				});
 			}
+			$scope.entity={}
+			$scope.save=function(){
+				if($scope.entity.id != null){
+                    $scope.update();
+				}else{
+                    $scope.add();
+				}
+			}
+			//添加
+			$scope.add=function () {
+                $http.post("/brand/add.do",$scope.entity).success(function (data) {
+                    if(data.success){
+                        $scope.reload();
+                    }else{
+                        alert(data.message);
+                    }
+                });
+            }
+			//修改
+			$scope.update=function () {
+                $http.post("/brand/update.do",$scope.entity).success(function (data) {
+                    if(data.success){
+                        $scope.reload();
+                    }else{
+                        alert(data.message);
+                    }
+                });
+            }
+			//通过id查找
+			$scope.findOne=function (id) {
+				$http.get("/brand/findOne.do?id="+id).success(function (data) {
+					$scope.entity=data;
+                });
+            }
         });
 	</script>
     
@@ -105,7 +139,7 @@
 									      <td>{{entity.name}}</td>
 		                                  <td>{{entity.firstChar}}</td>
 		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  >修改</button>                                           
+		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOne(entity.id)">修改</button>
 		                                  </td>
 			                          </tr>
 			                      </tbody>
@@ -133,16 +167,16 @@
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
 		      		<td>品牌名称</td>
-		      		<td><input  class="form-control" placeholder="品牌名称" >  </td>
+		      		<td><input  class="form-control" placeholder="品牌名称" ng-model="entity.name">  </td>
 		      	</tr>		      	
 		      	<tr>
 		      		<td>首字母</td>
-		      		<td><input  class="form-control" placeholder="首字母">  </td>
+		      		<td><input  class="form-control" placeholder="首字母" ng-model="entity.firstChar">  </td>
 		      	</tr>		      	
 			 </table>				
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save()">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>
