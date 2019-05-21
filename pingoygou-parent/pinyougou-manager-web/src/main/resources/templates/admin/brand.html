@@ -42,9 +42,10 @@
                     $scope.reload();
 				}
 			}
+            $scope.searchEntity={}  //查询参数  放到前面是为了reload函数执行时使用
 			//刷新页面
 			$scope.reload=function(){
-                $scope.findPage($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
+				$scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
 			}
 			//请求分页的数据
 			$scope.findPage=function(pagenum,size){
@@ -53,7 +54,7 @@
 					$scope.paginationConf.totalItems=data.total;
 				});
 			}
-			$scope.entity={}
+			$scope.entity={}   //存储brand的变量，用于添加和修改
 			$scope.save=function(){
 				if($scope.entity.id != null){
                     $scope.update();
@@ -61,6 +62,33 @@
                     $scope.add();
 				}
 			}
+			//用户选择的复选框
+			$scope.selectIds=[]
+			$scope.updateSelectIds=function ($event,id) {  //$event表示源target
+				if ($event.target.checked) {
+                    $scope.selectIds.push(id);
+                }else{
+                    var index = $scope.selectIds.indexOf(id);   //获取元素在数组中的位置
+                    $scope.selectIds.splice(index,1); //参数1：要删除的元素的位置  参数2：删除的个数
+				}
+            }
+			//删除
+			$scope.deletes=function () {
+				$http.get("/brand/deletes.do?ids="+$scope.selectIds).success(function (data) {
+                    if(data.success){
+                        $scope.reload();
+                    }else{
+                        alert(data.message);
+                    }
+                });
+            }
+			//查询
+			$scope.search=function (pagenum,size) {
+				$http.post("/brand/search.do?page="+pagenum+"&size="+size,$scope.searchEntity).success(function (data) {
+                    $scope.brandlist=data.results;
+                    $scope.paginationConf.totalItems=data.total;
+                });
+            }
 			//添加
 			$scope.add=function () {
                 $http.post("/brand/add.do",$scope.entity).success(function (data) {
@@ -106,15 +134,17 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>           
+                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="deletes()"><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-							                                         
+									  品牌名:<input  ng-model="searchEntity.name"></input>
+									  首字母:<input  ng-model="searchEntity.firstChar"></input>
+							          <button type="button" title="查询" class="btn btn-default" ng-click="reload()">查询</button>
                                 </div>
                             </div>
                             <!--工具栏/-->
@@ -134,7 +164,7 @@
 			                      </thead>
 			                      <tbody>
 			                          <tr ng-repeat="entity in brandlist">
-			                              <td><input  type="checkbox" ></td>			                              
+			                              <td><input  type="checkbox" ng-click="updateSelectIds($event,entity.id)" ></td>
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.name}}</td>
 		                                  <td>{{entity.firstChar}}</td>
@@ -149,9 +179,6 @@
 
                         </div>
                         <!-- 数据表格 /-->
-
-                        
-
                      </div>
                     <!-- /.box-body -->
          

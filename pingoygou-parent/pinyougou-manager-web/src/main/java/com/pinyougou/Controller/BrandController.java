@@ -44,7 +44,6 @@ public class BrandController {
     @PostMapping("/update.do")
     @ResponseBody
     public Result update(@RequestBody TbBrand brand){
-        System.out.println(brand.toString());
         if (brand.getId() == null){
             return new Result(false,"brand修改失败");
         }
@@ -61,6 +60,24 @@ public class BrandController {
     public TbBrand findById(Integer id){
         TbBrand byId = service.findById(id);
         return byId;
+    }
+    @GetMapping("/deletes.do")
+    @ResponseBody
+    public Result deletes(Long[] ids){
+        int i = service.deletes(ids);
+        if (i >0){
+            return new Result(true,"brand删除成功");
+        }else{
+            return new Result(false,"brand删除失败");
+        }
+    }
+
+    @PostMapping("/search.do")
+    @ResponseBody
+    public PageResult search(@RequestBody TbBrand brand,@RequestParam(name = "page",required = true) Integer page,
+                                                    @RequestParam(name = "size",required = true) Integer size){
+        PageResult search = service.search(brand, page, size);
+        return search;
     }
 
 }
