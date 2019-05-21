@@ -19,9 +19,34 @@
 	<script>
 		/*这里要添加分页组件模块*/
 		var app=angular.module('pinyougou',['pagination']);
-		app.controller("brandController",function ($scope,$http) {
+
+		app.service("brandService",function ($http) {
+			this.findall=function () {
+				return $http.get("/brand/findAll.do");
+            }
+            this.findPage=function (pagenum,size) {
+                return $http.get("/brand/findPage.do?page="+pagenum+"&size="+size);
+            }
+            this.deletes=function (ids) {
+				return $http.get("/brand/deletes.do?ids="+ids);
+            }
+            this.search=function (pagenum,size,searchEntity) {
+				return $http.post("/brand/search.do?page="+pagenum+"&size="+size,searchEntity);
+            }
+            this.add=function (entity) {
+				return $http.post("/brand/add.do",entity);
+            }
+            this.update=function (entity) {
+				return $http.post("/brand/update.do",entity);
+            }
+            this.findOne=function (id) {
+                return $http.get("/brand/findOne.do?id="+id);
+            }
+        });
+
+		app.controller("brandController",function ($scope,$http,brandService) {
 			$scope.findall=function(){
-			    $http.get("/brand/findAll.do").success(function(data){
+                brandService.findall().success(function(data){
                     $scope.brandlist=data;
                 });
             }
@@ -49,7 +74,7 @@
 			}
 			//请求分页的数据
 			$scope.findPage=function(pagenum,size){
-			    $http.get("/brand/findPage.do?page="+pagenum+"&size="+size).success(function(data){
+			    brandService.findPage(pagenum,size).success(function(data){
 					$scope.brandlist=data.results;
 					$scope.paginationConf.totalItems=data.total;
 				});
@@ -74,7 +99,7 @@
             }
 			//删除
 			$scope.deletes=function () {
-				$http.get("/brand/deletes.do?ids="+$scope.selectIds).success(function (data) {
+				brandService.deletes($scope.selectIds).success(function (data) {
                     if(data.success){
                         $scope.reload();
                     }else{
@@ -84,14 +109,14 @@
             }
 			//查询
 			$scope.search=function (pagenum,size) {
-				$http.post("/brand/search.do?page="+pagenum+"&size="+size,$scope.searchEntity).success(function (data) {
+                brandService.search(pagenum,size,$scope.searchEntity).success(function (data) {
                     $scope.brandlist=data.results;
                     $scope.paginationConf.totalItems=data.total;
                 });
             }
 			//添加
 			$scope.add=function () {
-                $http.post("/brand/add.do",$scope.entity).success(function (data) {
+                brandService.add($scope.entity).success(function (data) {
                     if(data.success){
                         $scope.reload();
                     }else{
@@ -101,7 +126,7 @@
             }
 			//修改
 			$scope.update=function () {
-                $http.post("/brand/update.do",$scope.entity).success(function (data) {
+                brandService.update($scope.entity).success(function (data) {
                     if(data.success){
                         $scope.reload();
                     }else{
@@ -111,7 +136,7 @@
             }
 			//通过id查找
 			$scope.findOne=function (id) {
-				$http.get("/brand/findOne.do?id="+id).success(function (data) {
+				brandService.findOne(id).success(function (data) {
 					$scope.entity=data;
                 });
             }
