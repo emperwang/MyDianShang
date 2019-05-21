@@ -5,6 +5,5 @@ spring:  # spring.devtools可以配置热加载相关的配置
     livereload:
       enabled: true
     restart:
-      poll-interval: 500ms
       exclude: /resources
 

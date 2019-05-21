@@ -12,20 +12,52 @@
 	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/plugins/angularjs/angular.min.js"></script>
+	<!--分页组件-->
+	<script src="/plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="/plugins/angularjs/pagination.css">
+
 	<script>
-		var app=angular.module("pinyougou",[]);
+		/*这里要添加分页组件模块*/
+		var app=angular.module('pinyougou',['pagination']);
 		app.controller("brandController",function ($scope,$http) {
 			$scope.findall=function(){
 			    $http.get("/brand/findAll.do").success(function(data){
                     $scope.brandlist=data;
                 });
             }
+			//记录页面的信息
+            /**
+			 * currentPage 当前页
+             * totalItem  总记录数
+			 * itemsPerPage 每页显示几个
+			 * perPageOptions 设置每页能显示多少个
+			 * onChange 改变时触发的事件
+             */
+            $scope.paginationConf={
+			    currentPage: 1,
+				totalItems: 10,
+				itemsPerPage: 10,
+				perPageOptions: [10,20,30,40,50],
+				onChange: function(){
+                    $scope.reload();
+				}
+			}
+			//刷新页面
+			$scope.reload=function(){
+                $scope.findPage($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
+			}
+			//请求分页的数据
+			$scope.findPage=function(pagenum,size){
+			    $http.get("/brand/findPage.do?page="+pagenum+"&size="+size).success(function(data){
+					$scope.brandlist=data.results;
+					$scope.paginationConf.totalItems=data.total;
+				});
+			}
         });
-
 	</script>
     
 </head>
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="brandController" ng-init="findall()">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="brandController">
   <!-- .box-body -->
                     <div class="box-header with-border">
                         <h3 class="box-title">品牌管理</h3>
@@ -78,15 +110,14 @@
 			                          </tr>
 			                      </tbody>
 			                  </table>
-			                  <!--数据列表/-->                        
-							  
-							 
+			                  <!--数据列表/-->
+							<tm-pagination conf="paginationConf"></tm-pagination>
+
                         </div>
                         <!-- 数据表格 /-->
+
                         
-                        
-                        
-                        
+
                      </div>
                     <!-- /.box-body -->
          
