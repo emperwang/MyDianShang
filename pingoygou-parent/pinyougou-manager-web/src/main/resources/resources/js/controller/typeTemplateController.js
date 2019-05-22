@@ -26,7 +26,11 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
 	$scope.findOne=function(id){				
 		typeTemplateService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response;
+				//把从数据库获取的数据转换为json对象
+                $scope.entity.brandIds=JSON.parse($scope.entity.brandIds);
+                $scope.entity.specIds=JSON.parse($scope.entity.specIds);
+                $scope.entity.customAttributeItems=JSON.parse($scope.entity.customAttributeItems);
 			}
 		);				
 	}

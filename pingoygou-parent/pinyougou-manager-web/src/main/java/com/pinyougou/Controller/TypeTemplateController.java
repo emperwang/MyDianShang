@@ -51,16 +51,7 @@ public class TypeTemplateController {
 	@RequestMapping("/add.do")//TbTypeTemplate typeTemplate customAttributeItems name brandIds specIds
 	public Result add(@RequestBody Map map){
 		try {
-			System.out.println(map);
-			String customAttributeItems = map.get("customAttributeItems").toString();
-			String name = (String) map.get("name").toString();
-			String brandIds = (String) map.get("brandIds").toString();
-			String specIds = (String) map.get("specIds").toString();
-			TbTypeTemplate tbTypeTemplate = new TbTypeTemplate();
-			tbTypeTemplate.setCustomAttributeItems(customAttributeItems);
-			tbTypeTemplate.setName(name);
-			tbTypeTemplate.setBrandIds(brandIds);
-			tbTypeTemplate.setSpecIds(specIds);
+			TbTypeTemplate tbTypeTemplate = getParamrterFromRequest(map);
 			typeTemplateService.add(tbTypeTemplate);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
@@ -68,16 +59,34 @@ public class TypeTemplateController {
 			return new Result(false, "增加失败");
 		}
 	}
-	
+
+	private TbTypeTemplate getParamrterFromRequest(Map map){
+		TbTypeTemplate tbTypeTemplate = new TbTypeTemplate();
+		//获取参数
+		String customAttributeItems = map.get("customAttributeItems").toString();
+		String name = (String) map.get("name").toString();
+		String brandIds = (String) map.get("brandIds").toString();
+		String specIds = (String) map.get("specIds").toString();
+		//封装参数到对象中
+		tbTypeTemplate.setCustomAttributeItems(customAttributeItems);
+		tbTypeTemplate.setName(name);
+		tbTypeTemplate.setBrandIds(brandIds);
+		tbTypeTemplate.setSpecIds(specIds);
+		return tbTypeTemplate;
+	}
+
 	/**
 	 * 修改
-	 * @param typeTemplate
+	 * @param map
 	 * @return
 	 */
 	@RequestMapping("/update.do")
-	public Result update(@RequestBody TbTypeTemplate typeTemplate){
+	public Result update(@RequestBody Map map){
 		try {
-			typeTemplateService.update(typeTemplate);
+			TbTypeTemplate tbTypeTemplate = getParamrterFromRequest(map);
+			Long id = Long.parseLong(map.get("id").toString());
+			tbTypeTemplate.setId(id);
+			typeTemplateService.update(tbTypeTemplate);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
