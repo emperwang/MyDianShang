@@ -2,6 +2,9 @@ package com.pinyougou.service.impl;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
+import com.pinyougou.mapper.TbSpecificationOptionMapper;
+import com.pinyougou.pojo.TbSpecificationOption;
+import com.pinyougou.pojoGroup.Specification;
 import com.pinyougou.service.SpecificationService;
 import com.pinyougou.viewEntity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,9 @@ import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.pojo.TbSpecificationExample;
 import com.pinyougou.pojo.TbSpecificationExample.Criteria;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 服务实现层
@@ -24,7 +30,10 @@ public class SpecificationServiceImpl implements SpecificationService {
 
 	@Autowired
 	private TbSpecificationMapper specificationMapper;
-	
+
+	@Autowired
+	private TbSpecificationOptionMapper specificationOptionMapper;
+
 	/**
 	 * 查询全部
 	 */
@@ -50,8 +59,16 @@ public class SpecificationServiceImpl implements SpecificationService {
 	 * 增加
 	 */
 	@Override
-	public void add(TbSpecification specification) {
-		specificationMapper.insert(specification);		
+	@Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.REQUIRED)
+	public void add(Specification specification) {
+		TbSpecification tbSpecification = specification.getSpecification();
+		specificationMapper.insert(tbSpecification);
+		Long id = tbSpecification.getId();
+		List<TbSpecificationOption> tbSpecificationOption = specification.getSpecificationList();
+		for (TbSpecificationOption option : tbSpecificationOption) {
+			option.setSpecId(id);
+			specificationOptionMapper.insert(option);
+		}
 	}
 
 	

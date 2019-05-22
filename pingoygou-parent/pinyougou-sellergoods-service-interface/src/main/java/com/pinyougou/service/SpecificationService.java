@@ -1,6 +1,7 @@
 package com.pinyougou.service;
 import java.util.List;
 import com.pinyougou.pojo.TbSpecification;
+import com.pinyougou.pojoGroup.Specification;
 import com.pinyougou.viewEntity.PageResult;
 
 /**
@@ -27,7 +28,7 @@ public interface SpecificationService {
 	/**
 	 * 增加
 	*/
-	public void add(TbSpecification specification);
+	public void add(Specification specification);
 	
 	
 	/**

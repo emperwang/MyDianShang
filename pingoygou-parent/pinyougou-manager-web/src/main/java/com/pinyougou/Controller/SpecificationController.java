@@ -1,6 +1,7 @@
 package com.pinyougou.Controller;
 import java.util.List;
 
+import com.pinyougou.pojoGroup.Specification;
 import com.pinyougou.service.SpecificationService;
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
@@ -46,7 +47,7 @@ public class SpecificationController {
 	 * @return
 	 */
 	@RequestMapping("/add.do")
-	public Result add(@RequestBody TbSpecification specification){
+	public Result add(@RequestBody Specification specification){
 		try {
 			specificationService.add(specification);
 			return new Result(true, "增加成功");

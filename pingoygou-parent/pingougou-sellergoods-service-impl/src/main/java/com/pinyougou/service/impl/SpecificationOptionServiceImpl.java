@@ -13,6 +13,7 @@ import com.pinyougou.mapper.TbSpecificationOptionMapper;
 import com.pinyougou.pojo.TbSpecificationOption;
 import com.pinyougou.pojo.TbSpecificationOptionExample;
 import com.pinyougou.pojo.TbSpecificationOptionExample.Criteria;
+import org.springframework.stereotype.Component;
 
 /**
  * 服务实现层
@@ -20,6 +21,7 @@ import com.pinyougou.pojo.TbSpecificationOptionExample.Criteria;
  *
  */
 @Service
+@Component
 public class SpecificationOptionServiceImpl implements SpecificationOptionService {
 
 	@Autowired
