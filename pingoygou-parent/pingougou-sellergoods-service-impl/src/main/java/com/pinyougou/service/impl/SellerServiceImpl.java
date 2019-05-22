@@ -13,6 +13,7 @@ import com.pinyougou.mapper.TbSellerMapper;
 import com.pinyougou.pojo.TbSeller;
 import com.pinyougou.pojo.TbSellerExample;
 import com.pinyougou.pojo.TbSellerExample.Criteria;
+import org.springframework.stereotype.Component;
 
 /**
  * 服务实现层
@@ -20,6 +21,7 @@ import com.pinyougou.pojo.TbSellerExample.Criteria;
  *
  */
 @Service
+@Component
 public class SellerServiceImpl implements SellerService {
 
 	@Autowired

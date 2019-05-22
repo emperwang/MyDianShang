@@ -13,6 +13,7 @@ import com.pinyougou.mapper.TbItemMapper;
 import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojo.TbItemExample;
 import com.pinyougou.pojo.TbItemExample.Criteria;
+import org.springframework.stereotype.Component;
 
 /**
  * 服务实现层
@@ -20,6 +21,7 @@ import com.pinyougou.pojo.TbItemExample.Criteria;
  *
  */
 @Service
+@Component
 public class ItemServiceImpl implements ItemService {
 
 	@Autowired

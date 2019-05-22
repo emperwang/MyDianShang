@@ -12,6 +12,7 @@ import com.pinyougou.mapper.TbGoodsMapper;
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.pojo.TbGoodsExample;
 import com.pinyougou.pojo.TbGoodsExample.Criteria;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -20,6 +21,7 @@ import com.pinyougou.pojo.TbGoodsExample.Criteria;
  *
  */
 @Service
+@Component
 public class GoodsServiceImpl implements GoodsService {
 
 	@Autowired

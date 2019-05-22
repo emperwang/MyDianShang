@@ -13,6 +13,7 @@ import com.pinyougou.mapper.TbItemCatMapper;
 import com.pinyougou.pojo.TbItemCat;
 import com.pinyougou.pojo.TbItemCatExample;
 import com.pinyougou.pojo.TbItemCatExample.Criteria;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -21,6 +22,7 @@ import com.pinyougou.pojo.TbItemCatExample.Criteria;
  *
  */
 @Service
+@Component
 public class ItemCatServiceImpl implements ItemCatService {
 
 	@Autowired

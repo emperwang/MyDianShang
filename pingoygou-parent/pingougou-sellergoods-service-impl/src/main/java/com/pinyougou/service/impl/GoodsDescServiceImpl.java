@@ -13,6 +13,7 @@ import com.pinyougou.mapper.TbGoodsDescMapper;
 import com.pinyougou.pojo.TbGoodsDesc;
 import com.pinyougou.pojo.TbGoodsDescExample;
 import com.pinyougou.pojo.TbGoodsDescExample.Criteria;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -21,6 +22,7 @@ import com.pinyougou.pojo.TbGoodsDescExample.Criteria;
  *
  */
 @Service
+@Component
 public class GoodsDescServiceImpl implements GoodsDescService {
 
 	@Autowired

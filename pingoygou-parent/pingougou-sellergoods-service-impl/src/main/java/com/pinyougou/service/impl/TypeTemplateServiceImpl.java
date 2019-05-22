@@ -13,6 +13,7 @@ import com.pinyougou.mapper.TbTypeTemplateMapper;
 import com.pinyougou.pojo.TbTypeTemplate;
 import com.pinyougou.pojo.TbTypeTemplateExample;
 import com.pinyougou.pojo.TbTypeTemplateExample.Criteria;
+import org.springframework.stereotype.Component;
 
 /**
  * 服务实现层
@@ -20,6 +21,7 @@ import com.pinyougou.pojo.TbTypeTemplateExample.Criteria;
  *
  */
 @Service
+@Component
 public class TypeTemplateServiceImpl implements TypeTemplateService {
 
 	@Autowired
