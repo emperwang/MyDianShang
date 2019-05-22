@@ -11,7 +11,7 @@ $scope.paginationConf={
     itemsPerPage: 10,
     perPageOptions: [10,20,30,40,50],
     onChange: function(){
-        $scope.reload();
+        $scope.reloadList();
     }
 }
 
@@ -25,4 +25,8 @@ $scope.updateSelectIds=function ($event,id) {  //$event表示源target
         $scope.selectIds.splice(index,1); //参数1：要删除的元素的位置  参数2：删除的个数
     }
 }
+    //刷新页面
+    $scope.reloadList=function(){
+        $scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
+    }
 });

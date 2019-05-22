@@ -2,17 +2,16 @@ package com.pinyougou.service.impl;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
-import com.pinyougou.pojo.TbItem;
 import com.pinyougou.service.SpecificationService;
 import com.pinyougou.viewEntity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.pinyougou.mapper.TbSpecificationMapper;
 import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.pojo.TbSpecificationExample;
 import com.pinyougou.pojo.TbSpecificationExample.Criteria;
+import org.springframework.stereotype.Component;
 
 /**
  * 服务实现层
@@ -20,6 +19,7 @@ import com.pinyougou.pojo.TbSpecificationExample.Criteria;
  *
  */
 @Service
+@Component
 public class SpecificationServiceImpl implements SpecificationService {
 
 	@Autowired

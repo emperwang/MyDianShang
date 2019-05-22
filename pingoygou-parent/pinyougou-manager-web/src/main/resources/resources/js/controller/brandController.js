@@ -9,14 +9,6 @@ app.controller("brandController",function ($scope,$controller,$http,brandService
             $scope.brandlist=data;
         });
     }
-
-    $scope.searchEntity={}  //查询参数  放到前面是为了reload函数执行时使用
-    //刷新页面
-    $scope.reload=function(){
-        $scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
-    }
-
-
     //请求分页的数据
     $scope.findPage=function(pagenum,size){
         brandService.findPage(pagenum,size).success(function(data){
@@ -39,12 +31,14 @@ app.controller("brandController",function ($scope,$controller,$http,brandService
     $scope.deletes=function () {
         brandService.deletes($scope.selectIds).success(function (data) {
             if(data.success){
-                $scope.reload();
+                $scope.reloadList();
             }else{
                 alert(data.message);
             }
         });
     }
+
+    $scope.searchEntity={}  //查询参数  放到前面是为了reload函数执行时使用
     //查询
     $scope.search=function (pagenum,size) {
         brandService.search(pagenum,size,$scope.searchEntity).success(function (data) {
@@ -56,7 +50,7 @@ app.controller("brandController",function ($scope,$controller,$http,brandService
     $scope.add=function () {
         brandService.add($scope.entity).success(function (data) {
             if(data.success){
-                $scope.reload();
+                $scope.reloadList();
             }else{
                 alert(data.message);
             }
@@ -66,7 +60,7 @@ app.controller("brandController",function ($scope,$controller,$http,brandService
     $scope.update=function () {
         brandService.update($scope.entity).success(function (data) {
             if(data.success){
-                $scope.reload();
+                $scope.reloadList();
             }else{
                 alert(data.message);
             }

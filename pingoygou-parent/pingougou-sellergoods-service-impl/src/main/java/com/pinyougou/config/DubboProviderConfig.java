@@ -2,7 +2,9 @@ package com.pinyougou.config;
 
 import com.alibaba.dubbo.config.*;
 import com.pinyougou.service.BrandService;
+import com.pinyougou.service.SpecificationService;
 import com.pinyougou.service.impl.BrandServiceImpl;
+import com.pinyougou.service.impl.SpecificationServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -26,10 +28,24 @@ public class DubboProviderConfig {
     }
 
     @Bean
-    public ServiceConfig<BrandService> serviceConfig(BrandServiceImpl service){
+    public ServiceConfig<BrandService> brandServiceConfig(BrandServiceImpl service){
         ServiceConfig<BrandService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(BrandService.class);
         serviceConfig.setRef(service);
+        serviceConfig.setRetries(3);
+        serviceConfig.setRegistry(registryConfig());
+        serviceConfig.setApplication(applicationConfig());
+        serviceConfig.setProtocol(protocolConfig());
+        serviceConfig.setMonitor(monitorConfig());
+        serviceConfig.export();
+        return serviceConfig;
+    }
+
+    @Bean
+    public ServiceConfig<SpecificationService> specificationServiceConfig(SpecificationServiceImpl specificationService){
+        ServiceConfig<SpecificationService> serviceConfig = new ServiceConfig<>();
+        serviceConfig.setInterface(SpecificationService.class);
+        serviceConfig.setRef(specificationService);
         serviceConfig.setRetries(3);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
