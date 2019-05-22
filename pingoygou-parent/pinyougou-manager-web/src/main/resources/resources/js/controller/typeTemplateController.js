@@ -106,10 +106,4 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
         $scope.entity.customAttributeItems.splice(index,1);
     }
     
-    $scope.clearEntity=function () {
-        $scope.entity={};
-        $scope.entity.customAttributeItems=[];
-        $scope.specList={data:[]}
-        $scope.brandList={data:[]}
-    }
-});	
+});
