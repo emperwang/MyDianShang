@@ -4,6 +4,7 @@ import java.util.List;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.mapper.TbSpecificationOptionMapper;
 import com.pinyougou.pojo.TbSpecificationOption;
+import com.pinyougou.pojo.TbSpecificationOptionExample;
 import com.pinyougou.pojoGroup.Specification;
 import com.pinyougou.service.SpecificationService;
 import com.pinyougou.viewEntity.PageResult;
@@ -86,8 +87,17 @@ public class SpecificationServiceImpl implements SpecificationService {
 	 * @return
 	 */
 	@Override
-	public TbSpecification findOne(Long id){
-		return specificationMapper.selectByPrimaryKey(id);
+	public Specification findOne(Long id){
+		Specification specification = new Specification();
+		TbSpecification tbSpecification = specificationMapper.selectByPrimaryKey(id);
+		specification.setSpecification(tbSpecification);
+
+		TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+		TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
+		criteria.andSpecIdEqualTo(id);
+		List<TbSpecificationOption> tbSpecificationOptionsList = specificationOptionMapper.selectByExample(example);
+		specification.setSpecificationList(tbSpecificationOptionsList);
+		return specification;
 	}
 
 	/**
