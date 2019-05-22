@@ -40,7 +40,7 @@ $scope.updateSelectIds=function ($event,id) {  //$event表示源target
         for(var i=0 ;i < json.length;i++){
             value += json[i][key] + ",";
         }
-        value.substring(0,value.length-1);
+        value = value.substring(0,value.length-1);
 
         return value;
     }
