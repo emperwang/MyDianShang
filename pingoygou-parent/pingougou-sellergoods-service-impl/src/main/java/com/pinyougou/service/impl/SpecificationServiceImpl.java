@@ -77,8 +77,22 @@ public class SpecificationServiceImpl implements SpecificationService {
 	 * 修改
 	 */
 	@Override
-	public void update(TbSpecification specification){
-		specificationMapper.updateByPrimaryKey(specification);
+	public void update(Specification specification){
+		//更新specification
+		TbSpecification tbSpecification = specification.getSpecification();
+		specificationMapper.updateByPrimaryKey(tbSpecification);
+		//先把specification_option对象的选项删除，在进行插入
+		Long id = tbSpecification.getId();
+		TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+		TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
+		criteria.andSpecIdEqualTo(id);
+		specificationOptionMapper.deleteByExample(example);
+		//在进行specification_option的更新
+		List<TbSpecificationOption> tbSpecificationOption = specification.getSpecificationList();
+		for (TbSpecificationOption option : tbSpecificationOption) {
+			option.setSpecId(id);
+			specificationOptionMapper.insert(option);
+		}
 	}	
 	
 	/**
