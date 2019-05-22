@@ -1,5 +1,6 @@
 package com.pinyougou.service.impl;
 import java.util.List;
+import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.mapper.TbSpecificationOptionMapper;
@@ -149,5 +150,11 @@ public class SpecificationServiceImpl implements SpecificationService {
 		long total = pageInfo.getTotal();
 		return new PageResult(total,list);
 	}
-	
+
+	@Override
+	public List<Map> selectOptionList() {
+		List<Map> maps = specificationMapper.selectOptionList();
+		return maps;
+	}
+
 }

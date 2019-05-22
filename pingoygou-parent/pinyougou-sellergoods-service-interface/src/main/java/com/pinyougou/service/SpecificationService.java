@@ -1,5 +1,7 @@
 package com.pinyougou.service;
 import java.util.List;
+import java.util.Map;
+
 import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.pojoGroup.Specification;
 import com.pinyougou.viewEntity.PageResult;
@@ -58,5 +60,10 @@ public interface SpecificationService {
 	 * @return
 	 */
 	public PageResult findPage(TbSpecification specification, int pageNum, int pageSize);
-	
+
+    /**
+     * 为type_template创建时的规则下拉框内容
+     * @return
+     */
+	List<Map> selectOptionList();
 }
