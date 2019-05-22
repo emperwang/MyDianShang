@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/brand")
@@ -80,4 +81,10 @@ public class BrandController {
         return search;
     }
 
+    @GetMapping("/selectOptionList.do")
+    @ResponseBody
+    public List<Map> getOptionList(){
+        List<Map> maps = service.selectOptionList();
+        return maps;
+    }
 }

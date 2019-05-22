@@ -5,6 +5,7 @@ import com.pinyougou.pojo.TbBrandExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TbBrandMapper {
     long countByExample(TbBrandExample example);
@@ -20,6 +21,8 @@ public interface TbBrandMapper {
     List<TbBrand> selectByExample(TbBrandExample example);
 
     TbBrand selectByPrimaryKey(Long id);
+
+    List<Map> selectOptionList();
 
     int updateByExampleSelective(@Param("record") TbBrand record, @Param("example") TbBrandExample example);
 

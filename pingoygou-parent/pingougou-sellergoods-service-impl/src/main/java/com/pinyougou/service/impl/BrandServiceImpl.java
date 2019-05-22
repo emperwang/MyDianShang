@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service(interfaceClass = BrandService.class)
 @Component
@@ -82,5 +83,11 @@ public class BrandServiceImpl implements BrandService {
         List<TbBrand> list = pageInfo.getList();
         long total = pageInfo.getTotal();
         return new PageResult(total,list);
+    }
+
+    @Override
+    public List<Map> selectOptionList() {
+        List<Map> maps = mapper.selectOptionList();
+        return maps;
     }
 }

@@ -21,4 +21,7 @@ app.service("brandService",function ($http) {
     this.findOne=function (id) {
         return $http.get("/brand/findOne.do?id="+id);
     }
+    this.findOptionList=function () {
+        return $http.get("/brand/selectOptionList.do");
+    }
 });
