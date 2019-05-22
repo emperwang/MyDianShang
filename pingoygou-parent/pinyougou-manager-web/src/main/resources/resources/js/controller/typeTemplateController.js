@@ -77,7 +77,7 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
 		);
 	}
 
-	$scope.brandList={data:[{id:1,text:'联想'},{id:2,text:'华为'},{id:3,text:'小米'},]}
+	$scope.brandList={data:[{id:1,text:'联想'},{id:2,text:'华为'},{id:3,text:'小米'}]}
 	//品牌列表
     $scope.findOptionBrandList=function () {
         brandService.findOptionList().success(function (datas) {
@@ -94,10 +94,10 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
     //扩展属性行添加
     //$scope.customAttributeItems=[];
 	$scope.addTableRow=function () {
-        $scope.customAttributeItems.push({});
+        $scope.entity.customAttributeItems.push({});
     }
     //扩展属性行删除
     $scope.deleTableRow=function (index) {
-        $scope.customAttributeItems.splice(index,1);
+        $scope.entity.customAttributeItems.splice(index,1);
     }
 });	

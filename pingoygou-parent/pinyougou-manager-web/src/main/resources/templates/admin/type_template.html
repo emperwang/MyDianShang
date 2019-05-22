@@ -47,7 +47,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" ng-click="customAttributeItems=[];" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" ng-click="entity.customAttributeItems=[];" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
                                        
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
@@ -116,7 +116,7 @@
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
 		      		<td>商品类型</td>
-		      		<td><input  class="form-control" placeholder="商品类型">  </td>
+		      		<td><input  class="form-control" placeholder="商品类型" ng-model="entity.name">  </td>
 		      	</tr>			   
 		      	<tr>
 		      		<td>关联品牌</td>
@@ -148,7 +148,7 @@
 									<td>操作</td>
 								</tr>
 							</thead>
-							<tbody ng-repeat="pojo in customAttributeItems">
+							<tbody ng-repeat="pojo in entity.customAttributeItems">
 								<tr>
 									<td><input type="checkbox" class="icheckbox_square-blue" ></td>
 									<td><input class="form-control" placeholder="属性名称" ng-model="pojo.text"></td>
@@ -164,7 +164,7 @@
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save()">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>

@@ -1,5 +1,6 @@
 package com.pinyougou.Controller;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.service.TypeTemplateService;
 import com.pinyougou.viewEntity.PageResult;
@@ -42,13 +43,25 @@ public class TypeTemplateController {
 	
 	/**
 	 * 增加
-	 * @param typeTemplate
+	 * 可以使用参数接收,名字就是独享的成员变量名字
+	 * 这里使用map是因为arrayList转换到对象的String类型成员变量失败
+	 * @param map
 	 * @return
 	 */
-	@RequestMapping("/add.do")
-	public Result add(@RequestBody TbTypeTemplate typeTemplate){
+	@RequestMapping("/add.do")//TbTypeTemplate typeTemplate customAttributeItems name brandIds specIds
+	public Result add(@RequestBody Map map){
 		try {
-			typeTemplateService.add(typeTemplate);
+			System.out.println(map);
+			String customAttributeItems = map.get("customAttributeItems").toString();
+			String name = (String) map.get("name").toString();
+			String brandIds = (String) map.get("brandIds").toString();
+			String specIds = (String) map.get("specIds").toString();
+			TbTypeTemplate tbTypeTemplate = new TbTypeTemplate();
+			tbTypeTemplate.setCustomAttributeItems(customAttributeItems);
+			tbTypeTemplate.setName(name);
+			tbTypeTemplate.setBrandIds(brandIds);
+			tbTypeTemplate.setSpecIds(specIds);
+			typeTemplateService.add(tbTypeTemplate);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
