@@ -1,7 +1,7 @@
  //控制层 
-app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService){	
+app.controller('typeTemplateController' ,function($scope,$controller,typeTemplateService){
 	
-	$controller('baseController',{$scope:$scope});//继承
+	$controller('publicController',{$scope:$scope});//继承
 	
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
@@ -16,7 +16,7 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.findPage=function(page,rows){			
 		typeTemplateService.findPage(page,rows).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -71,7 +71,7 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.search=function(page,rows){			
 		typeTemplateService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
