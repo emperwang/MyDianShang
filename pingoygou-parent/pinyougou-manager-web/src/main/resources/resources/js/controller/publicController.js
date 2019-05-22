@@ -29,4 +29,19 @@ $scope.updateSelectIds=function ($event,id) {  //$event表示源target
     $scope.reloadList=function(){
         $scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
     }
+
+    //把字符串提取出来想要的key的值
+    $scope.jsonToKeyString=function (jsonString,key) {
+        if (jsonString.indexOf("\"")==1 && jsonString.lastIndexOf("\"")==jsonString.length){
+            jsonString = jsonString.substring(1,jsonString.length-1);
+        }
+        var json = JSON.parse(jsonString);
+        var value="";
+        for(var i=0 ;i < json.length;i++){
+            value += json[i][key] + ",";
+        }
+        value.substring(0,value.length-1);
+
+        return value;
+    }
 });

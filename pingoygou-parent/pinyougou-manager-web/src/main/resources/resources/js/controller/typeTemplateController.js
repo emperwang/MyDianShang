@@ -105,5 +105,5 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
     $scope.deleTableRow=function (index) {
         $scope.entity.customAttributeItems.splice(index,1);
     }
-    
+
 });

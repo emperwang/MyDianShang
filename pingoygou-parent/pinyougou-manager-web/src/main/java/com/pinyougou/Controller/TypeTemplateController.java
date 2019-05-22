@@ -2,6 +2,7 @@ package com.pinyougou.Controller;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
 import com.pinyougou.service.TypeTemplateService;
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
@@ -45,13 +46,13 @@ public class TypeTemplateController {
 	 * 增加
 	 * 可以使用参数接收,名字就是独享的成员变量名字
 	 * 这里使用map是因为arrayList转换到对象的String类型成员变量失败
-	 * @param map
+	 * @param string
 	 * @return
 	 */
 	@RequestMapping("/add.do")//TbTypeTemplate typeTemplate customAttributeItems name brandIds specIds
-	public Result add(@RequestBody Map map){
+	public Result add(@RequestBody String string){
 		try {
-			TbTypeTemplate tbTypeTemplate = getParamrterFromRequest(map);
+			TbTypeTemplate tbTypeTemplate = JSON.parseObject(string, TbTypeTemplate.class);
 			typeTemplateService.add(tbTypeTemplate);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
@@ -60,32 +61,15 @@ public class TypeTemplateController {
 		}
 	}
 
-	private TbTypeTemplate getParamrterFromRequest(Map map){
-		TbTypeTemplate tbTypeTemplate = new TbTypeTemplate();
-		//获取参数
-		String customAttributeItems = map.get("customAttributeItems").toString();
-		String name = (String) map.get("name").toString();
-		String brandIds = (String) map.get("brandIds").toString();
-		String specIds = (String) map.get("specIds").toString();
-		//封装参数到对象中
-		tbTypeTemplate.setCustomAttributeItems(customAttributeItems);
-		tbTypeTemplate.setName(name);
-		tbTypeTemplate.setBrandIds(brandIds);
-		tbTypeTemplate.setSpecIds(specIds);
-		return tbTypeTemplate;
-	}
-
 	/**
 	 * 修改
-	 * @param map
+	 * @param string
 	 * @return
 	 */
 	@RequestMapping("/update.do")
-	public Result update(@RequestBody Map map){
+	public Result update(@RequestBody String string){
 		try {
-			TbTypeTemplate tbTypeTemplate = getParamrterFromRequest(map);
-			Long id = Long.parseLong(map.get("id").toString());
-			tbTypeTemplate.setId(id);
+			TbTypeTemplate tbTypeTemplate = JSON.parseObject(string, TbTypeTemplate.class);
 			typeTemplateService.update(tbTypeTemplate);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
