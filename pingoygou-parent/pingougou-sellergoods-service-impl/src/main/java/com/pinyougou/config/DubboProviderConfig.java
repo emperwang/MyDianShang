@@ -30,7 +30,7 @@ public class DubboProviderConfig {
         ServiceConfig<BrandService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(BrandService.class);
         serviceConfig.setRef(service);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
@@ -44,7 +44,7 @@ public class DubboProviderConfig {
         ServiceConfig<SpecificationService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(SpecificationService.class);
         serviceConfig.setRef(specificationService);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
@@ -58,7 +58,7 @@ public class DubboProviderConfig {
         ServiceConfig<SpecificationOptionService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(SpecificationOptionService.class);
         serviceConfig.setRef(specificationService);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
@@ -72,7 +72,7 @@ public class DubboProviderConfig {
         ServiceConfig<GoodsDescService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(GoodsDescService.class);
         serviceConfig.setRef(goodsDescService);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
@@ -86,7 +86,7 @@ public class DubboProviderConfig {
         ServiceConfig<GoodsService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(GoodsService.class);
         serviceConfig.setRef(goodsService);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
@@ -99,7 +99,7 @@ public class DubboProviderConfig {
         ServiceConfig<ItemCatService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(ItemCatService.class);
         serviceConfig.setRef(itemCatService);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
@@ -113,7 +113,7 @@ public class DubboProviderConfig {
         ServiceConfig<ItemService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(ItemService.class);
         serviceConfig.setRef(itemService);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
@@ -127,7 +127,7 @@ public class DubboProviderConfig {
         ServiceConfig<SellerService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(SellerService.class);
         serviceConfig.setRef(sellerService);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
@@ -140,7 +140,7 @@ public class DubboProviderConfig {
         ServiceConfig<TypeTemplateService> serviceConfig = new ServiceConfig<>();
         serviceConfig.setInterface(TypeTemplateService.class);
         serviceConfig.setRef(typeTemplateService);
-        serviceConfig.setRetries(3);
+        serviceConfig.setRetries(0);
         serviceConfig.setRegistry(registryConfig());
         serviceConfig.setApplication(applicationConfig());
         serviceConfig.setProtocol(protocolConfig());
