@@ -47,7 +47,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" ng-click="" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" ng-click="customAttributeItems=[];" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
                                        
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
@@ -137,7 +137,7 @@
 		      		<td>扩展属性</td>
 		      		<td>
 		      			<div class="btn-group">
-                             <button type="button" class="btn btn-default" title="新增扩展属性"><i class="fa fa-file-o"></i> 新增扩展属性</button>
+                             <button type="button" class="btn btn-default" title="新增扩展属性" ng-click="addTableRow()"><i class="fa fa-file-o"></i> 新增扩展属性</button>
                                                                     
                         </div>
 						<table class="table table-bordered table-striped"  width="800px">
@@ -148,16 +148,11 @@
 									<td>操作</td>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody ng-repeat="pojo in customAttributeItems">
 								<tr>
 									<td><input type="checkbox" class="icheckbox_square-blue" ></td>
-									<td><input class="form-control" placeholder="属性名称" ></td>
-									<td><button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="icheckbox_square-blue" ></td>
-									<td><input class="form-control" placeholder="属性名称" ></td>
-									<td><button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button></td>
+									<td><input class="form-control" placeholder="属性名称" ng-model="pojo.text"></td>
+									<td><button type="button" class="btn btn-default" title="删除" ng-click="deleTableRow($index)"><i class="fa fa-trash-o"></i> 删除</button></td>
 								</tr>
 							</tbody>
 						</table>	

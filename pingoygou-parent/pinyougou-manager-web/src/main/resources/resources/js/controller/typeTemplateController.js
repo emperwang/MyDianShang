@@ -91,5 +91,13 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
             $scope.specList={data:datas};
         });
     }
-
+    //扩展属性行添加
+    //$scope.customAttributeItems=[];
+	$scope.addTableRow=function () {
+        $scope.customAttributeItems.push({});
+    }
+    //扩展属性行删除
+    $scope.deleTableRow=function (index) {
+        $scope.customAttributeItems.splice(index,1);
+    }
 });	
