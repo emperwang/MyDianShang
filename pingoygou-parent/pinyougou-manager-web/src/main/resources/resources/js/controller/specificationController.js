@@ -76,5 +76,15 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 			}			
 		);
 	}
+	//定义一个变量，存储要提交到后台的数据信息
+    //$scope.entity = {specification:{},specificationList:[]}
+	//添加行
+	$scope.addTableRow=function () {
+        $scope.entity.specificationList.push({});
+    }
+    //删除行
+    $scope.deleTableRow=function (index) {
+        $scope.entity.specificationList.splice(index,1);
+    }
     
 });	
