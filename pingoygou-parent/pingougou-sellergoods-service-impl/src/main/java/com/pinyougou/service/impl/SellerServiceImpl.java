@@ -171,5 +171,12 @@ public class SellerServiceImpl implements SellerService {
 			long total = pageInfo.getTotal();
 			return new PageResult(total,list);
 	}
-	
+
+	@Override
+	public void updateStatus(String sellerId, String status) {
+		TbSeller seller = sellerMapper.selectByPrimaryKey(sellerId);
+		seller.setStatus(status);
+		sellerMapper.updateByPrimaryKey(seller);
+	}
+
 }

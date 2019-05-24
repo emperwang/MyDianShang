@@ -109,5 +109,20 @@ public class SellerController {
 	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
 		return sellerService.findPage(seller, page, rows);		
 	}
-	
+
+	/**
+	 * 更新状态
+	 * @param sellerId
+	 * @param status
+	 */
+	@RequestMapping("/updateStatus.do")
+	public Result updateStatus(String sellerId, String status) {
+		try {
+			sellerService.updateStatus(sellerId,status);
+			return new Result(true, "更新成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false, "更新失败");
+		}
+	}
 }
