@@ -11,26 +11,26 @@ public class AdminController {
 
     @GetMapping("/index.do")
     public String index(){
-        return "index";
+        return "admin/index";
     }
 
     @GetMapping("/goods-edit.do")
     public String goods_edit(){
-        return "goods_edit";
+        return "admin/goods_edit";
     }
 
     @GetMapping("/home.do")
     public String home(){
-        return "home";
+        return "admin/home";
     }
 
     @GetMapping("/password.do")
     public String password(){
-        return "password";
+        return "admin/password";
     }
 
     @GetMapping("/seller.do")
     public String seller(){
-        return "index";
+        return "admin/index";
     }
 }
