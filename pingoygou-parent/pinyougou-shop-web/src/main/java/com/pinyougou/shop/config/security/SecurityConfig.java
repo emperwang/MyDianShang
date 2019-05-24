@@ -30,6 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/shop/shoplogin.do").loginProcessingUrl("/login")
                 .defaultSuccessUrl("/admin/index.do").permitAll()
                 .and()
+                //打开注销功能
+                .logout().logoutUrl("/logout").deleteCookies().invalidateHttpSession(true)
+                .and()
                 //iframe标签的支持
                 .headers().frameOptions().sameOrigin();
     }
