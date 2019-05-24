@@ -106,5 +106,18 @@ public class ItemCatServiceImpl implements ItemCatService {
 			long total = pageInfo.getTotal();
 			return new PageResult(total,list);
 	}
-	
+
+	@Override
+	public PageResult findByParentId(Long parentId,int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		TbItemCatExample example = new TbItemCatExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andParentIdEqualTo(parentId);
+		List<TbItemCat> lists = itemCatMapper.selectByExample(example);
+		PageInfo<TbItemCat> pageInfo = new PageInfo<>(lists);
+		List<TbItemCat> list = pageInfo.getList();
+		long total = pageInfo.getTotal();
+		return new PageResult(total,list);
+	}
+
 }

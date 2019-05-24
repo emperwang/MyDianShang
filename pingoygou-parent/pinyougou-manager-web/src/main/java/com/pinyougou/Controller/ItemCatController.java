@@ -6,6 +6,7 @@ import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbItemCat;
@@ -109,5 +110,9 @@ public class ItemCatController {
 	public PageResult search(@RequestBody TbItemCat itemCat, int page, int rows  ){
 		return itemCatService.findPage(itemCat, page, rows);		
 	}
-	
+	@RequestMapping("/findByParentId.do")
+	public PageResult findByParentId(Long parentId,int page, int size){
+		PageResult result = itemCatService.findByParentId(parentId, page, size);
+		return result;
+	}
 }
