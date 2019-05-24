@@ -1,7 +1,7 @@
  //控制层 
 app.controller('sellerController' ,function($scope,$controller   ,sellerService){	
 	
-	$controller('baseController',{$scope:$scope});//继承
+	$controller('publicController',{$scope:$scope});//继承
 	
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
@@ -16,7 +16,7 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 	$scope.findPage=function(page,rows){			
 		sellerService.findPage(page,rows).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -71,7 +71,7 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 	$scope.search=function(page,rows){			
 		sellerService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
