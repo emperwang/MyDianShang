@@ -78,14 +78,34 @@ public class ItemCatServiceImpl implements ItemCatService {
 
 	/**
 	 * 批量删除
+	 * 进行判断,如果要删除的条目下面有子类那么就不能删除
 	 */
 	@Override
 	public void delete(Long[] ids) {
 		for(Long id:ids){
-			itemCatMapper.deleteByPrimaryKey(id);
+			if (isParent(id)) {
+				itemCatMapper.deleteByPrimaryKey(id);
+			}else{
+				throw new RuntimeException(id +" is parent ,can not be delete");
+			}
 		}		
 	}
-	
+
+	/**
+	 *  判断此id对应的记录是否有子目录,没有则返回true
+	 * @param id
+	 * @return
+	 */
+	private boolean isParent(Long id){
+		TbItemCatExample example = new TbItemCatExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andParentIdEqualTo(id);
+		List<TbItemCat> lists = itemCatMapper.selectByExample(example);
+		if (lists!=null && lists.size()>0){
+			return false;   //有子节点,不能删除
+		}
+		return true;
+	}
 	
 		@Override
 	public PageResult findPage(TbItemCat itemCat, int pageNum, int pageSize) {

@@ -39,7 +39,7 @@
                         <h3 class="box-title">商品分类管理     
                        	</h3>
                     </div>
-
+  {{selectIds}}
                     <div class="box-body">
                   			 <ol class="breadcrumb">	                        	
                         		<li>
@@ -61,7 +61,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" ng-click="findOptionTypeTemplateList()" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" ng-click="dele()" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="刷新" ><i class="fa fa-check"></i> 刷新</button>
                                        
                                     </div>
@@ -85,7 +85,7 @@
 			                      </thead>
 			                      <tbody>
 			                          <tr ng-repeat="entity in list">
-			                              <td><input  type="checkbox" ></td>			                              
+			                              <td><input  type="checkbox" ng-click="updateSelectIds($event,entity.id)"></td>
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.name}}</td>
 									      <td>{{entity.typeId}}</td>
@@ -99,6 +99,7 @@
 			                      </tbody>
 			                  </table>
 			                  <!--数据列表/-->
+
                         </div>
                         <!-- 数据表格 /-->
 
