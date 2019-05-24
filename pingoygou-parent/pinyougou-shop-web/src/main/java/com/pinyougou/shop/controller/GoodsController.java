@@ -1,15 +1,16 @@
 package com.pinyougou.shop.controller;
-import java.util.List;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.pojo.TbGoods;
+import com.pinyougou.service.GoodsService;
+import com.pinyougou.viewEntity.PageResult;
+import com.pinyougou.viewEntity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.pojo.TbGoods;
-import com.pinyougou.content.service.GoodsService;
 
-import entity.PageResult;
-import entity.Result;
+import java.util.List;
+
 /**
  * controller
  * @author Administrator
@@ -26,7 +27,7 @@ public class GoodsController {
 	 * 返回全部列表
 	 * @return
 	 */
-	@RequestMapping("/findAll")
+	@RequestMapping("/findAll.do")
 	public List<TbGoods> findAll(){			
 		return goodsService.findAll();
 	}
@@ -36,8 +37,8 @@ public class GoodsController {
 	 * 返回全部列表
 	 * @return
 	 */
-	@RequestMapping("/findPage")
-	public PageResult  findPage(int page,int rows){			
+	@RequestMapping("/findPage.do")
+	public PageResult findPage(int page, int rows){
 		return goodsService.findPage(page, rows);
 	}
 	
@@ -46,7 +47,7 @@ public class GoodsController {
 	 * @param goods
 	 * @return
 	 */
-	@RequestMapping("/add")
+	@RequestMapping("/add.do")
 	public Result add(@RequestBody TbGoods goods){
 		try {
 			goodsService.add(goods);
@@ -62,7 +63,7 @@ public class GoodsController {
 	 * @param goods
 	 * @return
 	 */
-	@RequestMapping("/update")
+	@RequestMapping("/update.do")
 	public Result update(@RequestBody TbGoods goods){
 		try {
 			goodsService.update(goods);
@@ -78,7 +79,7 @@ public class GoodsController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/findOne")
+	@RequestMapping("/findOne.do")
 	public TbGoods findOne(Long id){
 		return goodsService.findOne(id);		
 	}
@@ -88,7 +89,7 @@ public class GoodsController {
 	 * @param ids
 	 * @return
 	 */
-	@RequestMapping("/delete")
+	@RequestMapping("/delete.do")
 	public Result delete(Long [] ids){
 		try {
 			goodsService.delete(ids);
@@ -101,12 +102,12 @@ public class GoodsController {
 	
 		/**
 	 * 查询+分页
-	 * @param brand
+	 * @param
 	 * @param page
 	 * @param rows
 	 * @return
 	 */
-	@RequestMapping("/search")
+	@RequestMapping("/search.do")
 	public PageResult search(@RequestBody TbGoods goods, int page, int rows  ){
 		return goodsService.findPage(goods, page, rows);		
 	}

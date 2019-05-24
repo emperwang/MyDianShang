@@ -1,14 +1,15 @@
 package com.pinyougou.shop.controller;
-import java.util.List;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.pojo.TbSeller;
 import com.pinyougou.service.SellerService;
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.pojo.TbSeller;
+
+import java.util.List;
 
 /**
  * controller
@@ -106,7 +107,7 @@ public class SellerController {
 	 * @param rows
 	 * @return
 	 */
-	@RequestMapping("/search.do")
+	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
 		return sellerService.findPage(seller, page, rows);		
 	}
