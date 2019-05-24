@@ -1,7 +1,7 @@
  //控制层 
 app.controller('goodsController' ,function($scope,$controller   ,goodsService){	
 	
-	$controller('baseController',{$scope:$scope});//继承
+	$controller('publicController',{$scope:$scope});//继承
 	
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
