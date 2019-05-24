@@ -1,5 +1,5 @@
  //控制层 
-app.controller('itemCatController' ,function($scope,$controller,itemCatService){
+app.controller('itemCatController' ,function($scope,$controller,itemCatService,typeTemplateService){
 	
 	$controller('publicController',{$scope:$scope});//继承
 	
@@ -31,19 +31,21 @@ app.controller('itemCatController' ,function($scope,$controller,itemCatService){
 		);				
 	}
 	
-	//保存 
+	//保存
+	$scope.parentId=0;  //定义此变量,保存parentId的值
 	$scope.save=function(){				
 		var serviceObject;//服务层对象  				
 		if($scope.entity.id!=null){//如果有ID
 			serviceObject=itemCatService.update( $scope.entity ); //修改  
 		}else{
+            $scope.entity.parentId=$scope.parentId
 			serviceObject=itemCatService.add( $scope.entity  );//增加 
 		}				
 		serviceObject.success(
 			function(response){
 				if(response.success){
 					//重新查询 
-		        	$scope.reloadList();//重新加载
+		        	$scope.findByParentId($scope.parentId);//重新加载
 				}else{
 					alert(response.message);
 				}
@@ -86,6 +88,7 @@ app.controller('itemCatController' ,function($scope,$controller,itemCatService){
 
     //通过parentid来查找
     $scope.findByParentId=function (parentId) {
+		$scope.parentId=parentId
         itemCatService.findByParentId(parentId).success(function (data) {
             $scope.list=data;
         });
@@ -110,6 +113,14 @@ app.controller('itemCatController' ,function($scope,$controller,itemCatService){
             $scope.entity2=p_entity;
         }
         $scope.findByParentId(p_entity.id)
+    }
+
+    $scope.typeTemplateList={data:[]};
+    //下拉列表数据
+    $scope.findOptionTypeTemplateList=function () {
+        typeTemplateService.findOptionTypeTemplateList().success(function (dates) {
+            $scope.typeTemplateList={data:dates};
+        });
     }
 
 });
