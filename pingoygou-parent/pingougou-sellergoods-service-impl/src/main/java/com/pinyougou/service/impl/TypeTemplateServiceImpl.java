@@ -1,5 +1,6 @@
 package com.pinyougou.service.impl;
 import java.util.List;
+import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.pojo.TbItem;
@@ -114,5 +115,11 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 		long total = pageInfo.getTotal();
 		return new PageResult(total,list);
 	}
-	
+
+	@Override
+	public List<Map> selectItemCatOptionList() {
+        List<Map> maps = typeTemplateMapper.selectItemCatOptionList();
+        return maps;
+	}
+
 }

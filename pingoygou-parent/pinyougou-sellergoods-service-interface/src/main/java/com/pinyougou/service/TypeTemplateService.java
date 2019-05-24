@@ -1,5 +1,7 @@
 package com.pinyougou.service;
 import java.util.List;
+import java.util.Map;
+
 import com.pinyougou.pojo.TbTypeTemplate;
 import com.pinyougou.viewEntity.PageResult;
 
@@ -57,5 +59,10 @@ public interface TypeTemplateService {
 	 * @return
 	 */
 	public PageResult findPage(TbTypeTemplate typeTemplate, int pageNum, int pageSize);
-	
+
+	/**
+	 * 返回一个selet2格式的列表: [{id:'1',text:'name'}]
+	 * @return
+	 */
+	List<Map> selectItemCatOptionList();
 }
