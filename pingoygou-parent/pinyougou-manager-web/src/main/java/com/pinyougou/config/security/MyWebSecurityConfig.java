@@ -16,15 +16,23 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter{
    @Autowired
    private MyAuthenticationProvider authenticationProvider;
 
+   @Autowired
+   private MyFailHandler failHandlerl;
+
+   @Autowired
+   private MySuccessHandler successHandler;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         //允许静态资源访问
         http.authorizeRequests().antMatchers("/css/**","/img/**","/js/**","/plugins/**").permitAll()
                 .and()
-                .formLogin().loginPage("/login/login.do").loginProcessingUrl("/login").permitAll()    //设置登陆页面
-                .and().authorizeRequests().anyRequest().authenticated();    //其他请求都需要进行认证
-
+                .formLogin().loginPage("/login/login.do").loginProcessingUrl("/login").failureHandler(failHandlerl)
+                .successHandler(successHandler).permitAll()    //设置登陆页面
+                .and().authorizeRequests().anyRequest().authenticated()    //其他请求都需要进行认证
+                .and()
+                .headers().frameOptions().sameOrigin();    //对iframe标签的支持打开
     }
 
     @Autowired
