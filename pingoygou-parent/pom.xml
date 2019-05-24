@@ -10,6 +10,7 @@
     <module>pingougou-sellergoods-service-impl</module>
     <module>pinyougou-sellergoods-service-interface</module>
       <module>pinyougou-manager-web</module>
+      <module>pinyougou-shop-web</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
