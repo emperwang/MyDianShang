@@ -32,6 +32,10 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .successHandler(successHandler).permitAll()    //设置登陆页面
                 .and().authorizeRequests().anyRequest().authenticated()    //其他请求都需要进行认证
                 .and()
+                //启用注销功能,并删除相关的认证信息和无效httpSession以及删除cookie(可以指定cookie的name来指定删除哪些cookie)
+                //默认注销地址/logout,也可以重新指定,并且也可以指定注销成功或失败的处理函数
+                .logout().clearAuthentication(true).invalidateHttpSession(true).deleteCookies()
+                .and()
                 .headers().frameOptions().sameOrigin();    //对iframe标签的支持打开
     }
 
