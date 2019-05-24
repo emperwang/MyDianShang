@@ -1,7 +1,7 @@
  //控制层 
 app.controller('sellerController' ,function($scope,$controller   ,sellerService){	
 	
-	$controller('baseController',{$scope:$scope});//继承
+	$controller('publicController',{$scope:$scope});//继承
 	
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
@@ -50,6 +50,21 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}		
 		);				
 	}
+
+    //添加
+    $scope.add=function(){
+		serviceObject=sellerService.add( $scope.entity  );//增加
+        serviceObject.success(
+            function(response){
+                if(response.success){
+                    //跳转到登陆页面
+					location.href="/shop/shoplogin.do";
+                }else{
+                    alert(response.message);
+                }
+            }
+        );
+    }
 	
 	 
 	//批量删除 
