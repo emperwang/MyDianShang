@@ -1,6 +1,7 @@
 package com.pinyougou.shop.config.dubbo;
 
 import com.alibaba.dubbo.config.*;
+import com.pinyougou.service.GoodsService;
 import com.pinyougou.service.SellerService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,12 @@ public class DubboConfig {
     public ReferenceConfig referenceConfig() {
         ReferenceConfig<SellerService> referenceConfig = new ReferenceConfig<>();
         referenceConfig.setInterface(SellerService.class);
+        return referenceConfig;
+    }
+    @Bean
+    public ReferenceConfig referenceConfig2() {
+        ReferenceConfig<GoodsService> referenceConfig = new ReferenceConfig<>();
+        referenceConfig.setInterface(GoodsService.class);
         return referenceConfig;
     }
 
