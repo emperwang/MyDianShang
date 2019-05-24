@@ -11,8 +11,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-    @Autowired
-    private MyPasswordEncoder passwordEncoder;
+   /* @Autowired
+    private MyPasswordEncoder passwordEncoder;*/
+   @Autowired
+   private MyAuthenticationProvider authenticationProvider;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -27,7 +29,10 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
     public void configGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password("123456").roles("admin").and().passwordEncoder(passwordEncoder);
+        //定义用户以及密码,并使用指定的密码加密算法
+        /*auth.inMemoryAuthentication()
+                .withUser("admin").password("123456").roles("admin").and().passwordEncoder(passwordEncoder);*/
+        //使用自己定义的用户判断逻辑
+        auth.authenticationProvider(authenticationProvider);
     }
 }
