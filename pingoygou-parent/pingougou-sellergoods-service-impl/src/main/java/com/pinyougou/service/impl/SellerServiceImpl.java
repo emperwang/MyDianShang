@@ -1,4 +1,5 @@
 package com.pinyougou.service.impl;
+import java.util.Date;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
@@ -53,6 +54,8 @@ public class SellerServiceImpl implements SellerService {
 	 */
 	@Override
 	public void add(TbSeller seller) {
+		seller.setStatus("0");   //设置商户状态
+		seller.setCreateTime(new Date());  //设置商户申请时间
 		sellerMapper.insert(seller);		
 	}
 
