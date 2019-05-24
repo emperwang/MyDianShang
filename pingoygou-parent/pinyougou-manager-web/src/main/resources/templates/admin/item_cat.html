@@ -13,10 +13,19 @@
     <link rel="stylesheet" href="/css/style.css">
 	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-    
+
+	<script src="/plugins/angularjs/angular.min.js"></script>
+	<!--分页组件-->
+	<script src="/plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="/plugins/angularjs/pagination.css">
+	<!--添加brand的控制层，业务层-->
+	<script src="/js/base_pagination.js"></script>
+	<script src="/js/service/itemCatService.js"></script>
+	<script src="/js/controller/publicController.js"></script>
+	<script src="/js/controller/itemCatController.js"></script>
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" >
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="itemCatController" ng-init="findByParentId(0)">
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -68,52 +77,22 @@
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-			                          <tr >
+			                          <tr ng-repeat="entity in list">
 			                              <td><input  type="checkbox" ></td>			                              
-				                          <td>982</td>
-									      <td>吊坠/项链</td>									    
-									      <td>
-									      	11    
-									      </td>									      
+				                          <td>{{entity.id}}</td>
+									      <td>{{entity.name}}</td>
+									      <td>{{entity.typeId}}</td>
 		                                  <td class="text-center">		                                     
-		                                      <button type="button" class="btn bg-olive btn-xs" >查询下级</button> 		                                     
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
-		                                  </td>
-			                          </tr>
-									  <tr >
-			                              <td><input  type="checkbox"> </td>			                              
-				                          <td>983</td>
-									      <td>手镯/手链/脚链</td>									    
-									      <td>
-									      	11    
-									      </td>									      
-		                                  <td class="text-center">		                                     
-		                                      <button type="button" class="btn bg-olive btn-xs" >查询下级</button> 		                                     
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
-		                                  </td>
-			                          </tr>
-									  <tr >
-			                              <td><input  type="checkbox" ></td>			                              
-				                          <td>984</td>
-									      <td>戒指/耳饰</td>									    
-									      <td>
-									      	11    
-									      </td>									      
-		                                  <td class="text-center">		                                     
-		                                      <button type="button" class="btn bg-olive btn-xs" >查询下级</button> 		                                     
+		                                      <button type="button" class="btn bg-olive btn-xs" ng-click="findByParentId(entity.id)">查询下级</button>
 		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
 		                                  </td>
 			                          </tr>
 			                      </tbody>
 			                  </table>
-			                  <!--数据列表/-->                      
-						
+			                  <!--数据列表/-->
                         </div>
                         <!-- 数据表格 /-->
-                        
-                        
-                        
-                        
+
                      </div>
                     <!-- /.box-body -->
               

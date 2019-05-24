@@ -1,7 +1,7 @@
  //控制层 
-app.controller('itemCatController' ,function($scope,$controller   ,itemCatService){	
+app.controller('itemCatController' ,function($scope,$controller,itemCatService){
 	
-	$controller('baseController',{$scope:$scope});//继承
+	$controller('publicController',{$scope:$scope});//继承
 	
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
@@ -16,7 +16,7 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	$scope.findPage=function(page,rows){			
 		itemCatService.findPage(page,rows).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -71,10 +71,24 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	$scope.search=function(page,rows){			
 		itemCatService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
 	}
-    
-});	
+	//通过parentid来 分页查找
+	$scope.findByParentIdPage=function (parentId,page,size) {
+        itemCatService.findByParentIdPage(parentId,page,size).success(function (data) {
+            $scope.list=data.results;
+            $scope.paginationConf.totalItems=data.total;//更新总记录数
+        });
+    }
+
+    //通过parentid来查找
+    $scope.findByParentId=function (parentId) {
+        itemCatService.findByParentId(parentId).success(function (data) {
+            $scope.list=data;
+        });
+    }
+
+});

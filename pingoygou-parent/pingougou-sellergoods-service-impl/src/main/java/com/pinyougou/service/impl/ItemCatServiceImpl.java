@@ -108,7 +108,7 @@ public class ItemCatServiceImpl implements ItemCatService {
 	}
 
 	@Override
-	public PageResult findByParentId(Long parentId,int pageNum, int pageSize) {
+	public PageResult findByParentIdPage(Long parentId,int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		TbItemCatExample example = new TbItemCatExample();
 		Criteria criteria = example.createCriteria();
@@ -118,6 +118,15 @@ public class ItemCatServiceImpl implements ItemCatService {
 		List<TbItemCat> list = pageInfo.getList();
 		long total = pageInfo.getTotal();
 		return new PageResult(total,list);
+	}
+
+	@Override
+	public List<TbItemCat> findByParentId(Long parentId) {
+		TbItemCatExample example = new TbItemCatExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andParentIdEqualTo(parentId);
+		List<TbItemCat> lists = itemCatMapper.selectByExample(example);
+		return lists;
 	}
 
 }

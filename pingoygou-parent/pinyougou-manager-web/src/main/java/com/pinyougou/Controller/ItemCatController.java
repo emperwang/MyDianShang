@@ -111,8 +111,14 @@ public class ItemCatController {
 		return itemCatService.findPage(itemCat, page, rows);		
 	}
 	@RequestMapping("/findByParentId.do")
-	public PageResult findByParentId(Long parentId,int page, int size){
-		PageResult result = itemCatService.findByParentId(parentId, page, size);
+	public List findByParentId(Long parentId){
+		List<TbItemCat> lists = itemCatService.findByParentId(parentId);
+		return lists;
+	}
+
+	@RequestMapping("/findByParentIdPage.do")
+	public PageResult findByParentIdPage(Long parentId,int page, int size){
+		PageResult result = itemCatService.findByParentIdPage(parentId, page, size);
 		return result;
 	}
 }

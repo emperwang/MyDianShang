@@ -62,6 +62,13 @@ public interface ItemCatService {
 	 * 通过parentId来查找数据,并分页显示
 	 * @return
 	 */
-	public PageResult findByParentId(Long parentId,int pageNum, int pageSize);
+	public PageResult findByParentIdPage(Long parentId,int pageNum, int pageSize);
+
+	/**
+	 * 通过parentId查找,不进行分页显示
+	 * @param parentId
+	 * @return
+	 */
+	public List<TbItemCat> findByParentId(Long parentId);
 
 }
