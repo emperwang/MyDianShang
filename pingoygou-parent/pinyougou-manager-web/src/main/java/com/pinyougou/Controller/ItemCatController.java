@@ -82,7 +82,7 @@ public class ItemCatController {
 	}	
 	
 	/**
-	 * 获取实体
+	 * 获取实体 格式:{"itemCat":{"id":495,"parentId":0,"name":"玩具乐器","typeId":35},"templateJson":[{"id":35,"text":"手机"}]}
 	 * @param id
 	 * @return
 	 */
