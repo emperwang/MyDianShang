@@ -21,12 +21,13 @@ app.controller('itemCatController' ,function($scope,$controller,itemCatService,t
 			}			
 		);
 	}
-	
-	//查询实体 
+
+	//查询实体
 	$scope.findOne=function(id){				
 		itemCatService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response.itemCat;
+				$scope.typeTemplateList={data:response.templateJson};
 			}
 		);				
 	}

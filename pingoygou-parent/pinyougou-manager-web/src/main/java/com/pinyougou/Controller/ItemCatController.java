@@ -1,7 +1,13 @@
 package com.pinyougou.Controller;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.pinyougou.pojo.TbTypeTemplate;
 import com.pinyougou.service.ItemCatService;
+import com.pinyougou.service.TypeTemplateService;
+import com.pinyougou.viewEntity.ItemCatView;
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +27,9 @@ public class ItemCatController {
 
 	@Reference
 	private ItemCatService itemCatService;
-	
+	@Reference
+	private TypeTemplateService templateService;
+
 	/**
 	 * 返回全部列表
 	 * @return
@@ -79,8 +87,18 @@ public class ItemCatController {
 	 * @return
 	 */
 	@RequestMapping("/findOne.do")
-	public TbItemCat findOne(Long id){
-		return itemCatService.findOne(id);		
+	public ItemCatView findOne(Long id){
+		TbItemCat itemCat = itemCatService.findOne(id);
+		TbTypeTemplate typeTemplate = templateService.findOne(itemCat.getTypeId());
+		Long id1 = typeTemplate.getId();
+		String name = typeTemplate.getName();
+		Map<String,Object> map = new HashMap<>();
+		map.put("id",id1);
+		map.put("text",name);
+		ArrayList<Map> maps = new ArrayList<>();
+		maps.add(map);
+		ItemCatView itemCatView = new ItemCatView(itemCat, maps);
+		return itemCatView;
 	}
 	
 	/**
