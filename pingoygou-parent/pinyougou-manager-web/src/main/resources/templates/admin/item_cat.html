@@ -25,7 +25,7 @@
 	<script src="/js/controller/itemCatController.js"></script>
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="itemCatController" ng-init="findByParentId(0)">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="itemCatController" ng-init="grade=1;selectList({id:0})">
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -36,13 +36,13 @@
                     <div class="box-body">
                   			 <ol class="breadcrumb">	                        	
                         		<li>
-		                        	<a href="#" >顶级分类列表</a> 
+		                        	<a href="#" ng-click="grade=1;selectList({id:0})">顶级分类列表</a>
 		                        </li>
 		                        <li>
-		                       		<a href="#" >珠宝</a>
+		                       		<a href="#" ng-click="grade=2;selectList(entity1)">{{entity1.name}}</a>
 		                        </li>
 		                        <li>
-		                        	<a href="#" >银饰</a>
+		                        	<a href="#" ng-click="grade=3;selectList(entity2)">{{entity2.name}}</a>
 		                        </li>
 	                        </ol>
 
@@ -82,8 +82,10 @@
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.name}}</td>
 									      <td>{{entity.typeId}}</td>
-		                                  <td class="text-center">		                                     
-		                                      <button type="button" class="btn bg-olive btn-xs" ng-click="findByParentId(entity.id)">查询下级</button>
+		                                  <td class="text-center">
+											  <span ng-if="grade!=3">
+		                                      <button type="button" class="btn bg-olive btn-xs" ng-click="grade=setGrade(grade+1);selectList(entity)">查询下级</button>
+											  </span>
 		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
 		                                  </td>
 			                          </tr>
@@ -92,6 +94,11 @@
 			                  <!--数据列表/-->
                         </div>
                         <!-- 数据表格 /-->
+
+
+
+
+
 
                      </div>
                     <!-- /.box-body -->

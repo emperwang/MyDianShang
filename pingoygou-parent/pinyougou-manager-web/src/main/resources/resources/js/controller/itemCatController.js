@@ -90,5 +90,26 @@ app.controller('itemCatController' ,function($scope,$controller,itemCatService){
             $scope.list=data;
         });
     }
+	//记录现在时第几级
+    $scope.grade=1
+	$scope.setGrade=function (value) {
+		$scope.grade = value;
+    }
+    //分级进行查找的函数 面包屑的操作
+    $scope.selectList=function (p_entity) {
+
+		if($scope.grade == 1){
+			$scope.entity1=null;
+			$scope.entity2=null;
+		}
+        if($scope.grade == 2){
+            $scope.entity1=p_entity;
+            $scope.entity2=null;
+        }
+        if($scope.grade == 3){
+            $scope.entity2=p_entity;
+        }
+        $scope.findByParentId(p_entity.id)
+    }
 
 });
