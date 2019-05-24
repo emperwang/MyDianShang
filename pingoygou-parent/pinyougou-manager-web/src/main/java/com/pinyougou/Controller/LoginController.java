@@ -11,4 +11,9 @@ public class LoginController {
     public String login(){
         return "login";
     }
+
+    @RequestMapping("/login-error.do")
+    public String loginError(){
+        return "login_error";
+    }
 }
