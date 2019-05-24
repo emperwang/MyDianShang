@@ -19,6 +19,11 @@ public class AdminController {
         return "admin/goods_edit";
     }
 
+    @GetMapping("/goods.do")
+    public String goods(){
+        return "admin/goods";
+    }
+
     @GetMapping("/home.do")
     public String home(){
         return "admin/home";
@@ -31,6 +36,6 @@ public class AdminController {
 
     @GetMapping("/seller.do")
     public String seller(){
-        return "admin/index";
+        return "admin/seller";
     }
 }
