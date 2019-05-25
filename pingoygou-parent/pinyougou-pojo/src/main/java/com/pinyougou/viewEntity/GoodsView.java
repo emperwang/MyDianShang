@@ -10,7 +10,7 @@ import java.util.List;
 public class GoodsView implements Serializable{
     private TbGoods goods;
     private TbGoodsDesc goodsDesc;
-    private List<TbItem> items;
+    private List<TbItem> itemList;
 
     public TbGoods getGoods() {
         return goods;
@@ -28,11 +28,11 @@ public class GoodsView implements Serializable{
         this.goodsDesc = goodsDesc;
     }
 
-    public List<TbItem> getItems() {
-        return items;
+    public List<TbItem> getItemList() {
+        return itemList;
     }
 
-    public void setItems(List<TbItem> items) {
-        this.items = items;
+    public void setItemList(List<TbItem> itemList) {
+        this.itemList = itemList;
     }
 }
