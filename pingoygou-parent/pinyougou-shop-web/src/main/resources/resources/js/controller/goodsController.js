@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller   ,goodsService){	
+app.controller('goodsController' ,function($scope,$controller,goodsService,itemCatService,typeTemplateService){
 	
 	$controller('publicController',{$scope:$scope});//继承
 	
@@ -90,5 +90,43 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}			
 		);
 	}
+
+	//第一级下拉列表
+	$scope.findFirstItemCatList=function () {
+        itemCatService.findByParentId(0).success(function (data) {
+			$scope.firstItemCatlist1=data;
+        })
+    }
+
+    //二级下拉列表
+	//这里使用了angluarjs的监视功能,如果category1Id的值发生变化，那么后面的函数就会执行
+	$scope.$watch('entity.goods.category1Id',function (newValue,oldValue) {
+        itemCatService.findByParentId(newValue).success(function (data) {
+            $scope.firstItemCatlist2=data;
+        })
+    });
+
+	//三级下拉列表
+    $scope.$watch('entity.goods.category2Id',function (newValue,oldValue) {
+        itemCatService.findByParentId(newValue).success(function (data) {
+            $scope.firstItemCatlist3=data;
+        })
+    });
+    //模板ID
+    $scope.$watch('entity.goods.category3Id',function (newValue,oldValue) {
+        itemCatService.findOne(newValue).success(function (data) {
+            $scope.entity.goods.typeTemplateId=data.itemCat.typeId;
+        });
+    });
+
+    //品牌下拉表
+    $scope.$watch('entity.goods.typeTemplateId',function (newValue,oldValue) {
+        typeTemplateService.findOne(newValue).success(function (data) {
+        	console.log(data)
+        	$scope.brandList=data.brandIds;
+            console.log($scope.brandList)
+            $scope.brandList=JSON.parse($scope.brandList);
+        });
+    });
     
 });	
