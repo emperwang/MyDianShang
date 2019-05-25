@@ -128,6 +128,11 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
             $scope.entity.goodsDesc.customAttributeItems=data.customAttributeItems;
             $scope.entity.goodsDesc.customAttributeItems=JSON.parse($scope.entity.goodsDesc.customAttributeItems);
         });
+        //查询规格的后台数据
+        typeTemplateService.findSpecList(newValue).success(function(response){
+			$scope.specificationList=response;
+		});
     });
-    
+
+
 });	
