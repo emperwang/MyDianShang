@@ -3,8 +3,10 @@ package com.pinyougou.shop.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.service.GoodsService;
+import com.pinyougou.viewEntity.GoodsView;
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,7 +50,10 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/add.do")
-	public Result add(@RequestBody TbGoods goods){
+	public Result add(@RequestBody GoodsView goods){
+		//获取当前登陆的用户
+		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+		goods.getGoods().setSellerId(sellerId);
 		try {
 			goodsService.add(goods);
 			return new Result(true, "增加成功");

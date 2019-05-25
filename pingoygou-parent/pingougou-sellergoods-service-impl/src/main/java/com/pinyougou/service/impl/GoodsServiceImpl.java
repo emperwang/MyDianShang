@@ -2,7 +2,10 @@ package com.pinyougou.service.impl;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
+import com.pinyougou.mapper.TbGoodsDescMapper;
+import com.pinyougou.pojo.TbGoodsDesc;
 import com.pinyougou.service.GoodsService;
+import com.pinyougou.viewEntity.GoodsView;
 import com.pinyougou.viewEntity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -26,7 +29,9 @@ public class GoodsServiceImpl implements GoodsService {
 
 	@Autowired
 	private TbGoodsMapper goodsMapper;
-	
+	@Autowired
+	private TbGoodsDescMapper goodsDescMapper;
+
 	/**
 	 * 查询全部
 	 */
@@ -50,10 +55,16 @@ public class GoodsServiceImpl implements GoodsService {
 
 	/**
 	 * 增加
+	 * goodsDesc是goods的扩展表
+	 * item是goods的sku表，是多对一的关系
 	 */
 	@Override
-	public void add(TbGoods goods) {
-		goodsMapper.insert(goods);		
+	public void add(GoodsView goodsView) {
+		TbGoods goods = goodsView.getGoods();
+		goodsMapper.insert(goods);
+		TbGoodsDesc goodsDesc = goodsView.getGoodsDesc();
+		goodsDesc.setGoodsId(goods.getId());
+		goodsDescMapper.insert(goodsDesc);
 	}
 
 	
