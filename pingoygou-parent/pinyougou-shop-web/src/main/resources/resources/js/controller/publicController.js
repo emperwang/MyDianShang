@@ -44,4 +44,13 @@ $scope.updateSelectIds=function ($event,id) {  //$event表示源target
 
         return value;
     }
+  //在集合中查找对象
+  $scope.searchObjectInList=function (list,key,keyValue) {
+      for(var i=0;i<list.length;i++){
+          if(list[i][key] == keyValue){
+              return list[i];
+          }
+      }
+      return null;
+  }
 });

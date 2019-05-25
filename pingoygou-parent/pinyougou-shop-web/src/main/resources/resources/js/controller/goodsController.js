@@ -133,6 +133,25 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
 			$scope.specificationList=response;
 		});
     });
+	//把用户选择的规格添加到entity中，然后提交到goodsDesc表
+	$scope.updateSpecificationItem=function ($event,name,keyValue) {
+		var object = $scope.searchObjectInList($scope.entity.goodsDesc.specificationItems,'attributeName',name);
+        //已经存在
+		if(object != null){
+            if($event.target.checked) {
+                object.attributeValue.push(keyValue);
+            }else{
+                object.attributeValue.splice(object.attributeValue.indexOf(keyValue),1);
+                //如果此项的长度为0，那么就把此项全部删除
+                if(object.attributeValue.length==0){
+                    $scope.entity.goodsDesc.specificationItems.splice(
+                        $scope.entity.goodsDesc.specificationItems.indexOf(object),1);
+				}
+            }
+		}else {//第一次添加 ,attributeValue定义为list
+            $scope.entity.goodsDesc.specificationItems.push({'attributeName':name,'attributeValue':[keyValue]})
+        }
+    }
 
 
 });	
