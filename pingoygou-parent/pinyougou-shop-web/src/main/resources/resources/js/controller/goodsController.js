@@ -90,7 +90,7 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
 			}			
 		);
 	}
-
+    $scope.entity={ goodsDesc:{itemImages:[],specificationItems:[]}  };
 	//第一级下拉列表
 	$scope.findFirstItemCatList=function () {
         itemCatService.findByParentId(0).success(function (data) {
@@ -122,10 +122,11 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
     //品牌下拉表
     $scope.$watch('entity.goods.typeTemplateId',function (newValue,oldValue) {
         typeTemplateService.findOne(newValue).success(function (data) {
-        	console.log(data)
         	$scope.brandList=data.brandIds;
-            console.log($scope.brandList)
             $scope.brandList=JSON.parse($scope.brandList);
+            //扩展属性
+            $scope.entity.goodsDesc.customAttributeItems=data.customAttributeItems;
+            $scope.entity.goodsDesc.customAttributeItems=JSON.parse($scope.entity.goodsDesc.customAttributeItems);
         });
     });
     

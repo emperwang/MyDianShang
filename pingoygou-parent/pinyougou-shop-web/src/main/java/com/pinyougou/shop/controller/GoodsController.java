@@ -1,6 +1,7 @@
 package com.pinyougou.shop.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.service.GoodsService;
 import com.pinyougou.viewEntity.GoodsView;
@@ -49,8 +50,9 @@ public class GoodsController {
 	 * @param goods
 	 * @return
 	 */
-	@RequestMapping("/add.do")
-	public Result add(@RequestBody GoodsView goods){
+	@RequestMapping("/add.do")//GoodsView goods
+	public Result add(@RequestBody String string){
+		GoodsView goods = JSON.parseObject(string, GoodsView.class);
 		//获取当前登陆的用户
 		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
 		goods.getGoods().setSellerId(sellerId);
