@@ -50,7 +50,21 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}		
 		);				
 	}
-	
+    //添加
+    $scope.add=function(){
+        $scope.entity.goodsDesc.introduction=editor.html();
+    	goodsService.add( $scope.entity  ).success(
+            function(response){
+                if(response.success){
+                    //添加成功后需要把输入框清空
+                    $scope.entity={}
+                    editor.html("");   //富文本框清空
+                }else{
+                    alert(response.message);
+                }
+            }
+        );
+    }
 	 
 	//批量删除 
 	$scope.dele=function(){			
