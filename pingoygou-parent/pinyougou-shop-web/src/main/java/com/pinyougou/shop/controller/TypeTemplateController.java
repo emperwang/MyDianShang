@@ -123,4 +123,10 @@ public class TypeTemplateController {
 		List<Map> maps = typeTemplateService.selectItemCatOptionList();
 		return maps;
 	}
+
+	@RequestMapping("/findSpecList.do")
+	public List<Map> findSpecList(Long id){
+		List<Map> specList = typeTemplateService.findSpecList(id);
+		return specList;
+	}
 }
