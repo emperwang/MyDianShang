@@ -38,6 +38,10 @@ app.controller('goodsController' ,function($scope,$controller,$location ,goodsSe
                 $scope.entity.goodsDesc.customAttributeItems = JSON.parse(response.goodsDesc.customAttributeItems);
                 //规格列表转换
                 $scope.entity.goodsDesc.specificationItems = JSON.parse(response.goodsDesc.specificationItems);
+                //转换itemList中的spec对json对象
+				for(var i=0;i<response.itemList.length;i++){
+                    response.itemList[i].spec=JSON.parse(response.itemList[i].spec);
+				}
 			}
 		);				
 	}
