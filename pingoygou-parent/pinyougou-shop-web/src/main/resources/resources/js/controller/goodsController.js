@@ -173,7 +173,19 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
         return newList;
     }
 
-
     //商品审核状态
 	$scope.status=['未审核','已审核','审核未通过','已关闭'];
+
+	//保存分类的名称
+	$scope.itemCatList=[];
+	//查找商品分类
+	$scope.findItemCatList=function () {
+        itemCatService.findAll().success(function (response) {
+			for(var i=0;i<response.length;i++){
+				//以id为list索引,name为索引的值
+                $scope.itemCatList[response[i].id]=response[i].name;
+			}
+        });
+    }
+
 });	

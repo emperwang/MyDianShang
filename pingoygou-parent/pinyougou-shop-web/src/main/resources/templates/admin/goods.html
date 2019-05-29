@@ -27,7 +27,7 @@
 	<script src="/js/controller/goodsController.js"></script>
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="findItemCatList()">
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -89,9 +89,9 @@
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.goodsName}}</td>
 									      <td>{{entity.price}}</td>
-									      <td>{{entity.category1Id}}</td>
-									      <td>{{entity.category2Id}}</td>
-									      <td>{{entity.category3Id}}</td>
+									      <td>{{itemCatList[entity.category1Id]}}</td>
+									      <td>{{itemCatList[entity.category2Id]}}</td>
+									      <td>{{itemCatList[entity.category3Id]}}</td>
 		                                  <td>
 											  {{status[entity.auditStatus]}}
 		                                  </td>		                                  
