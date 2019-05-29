@@ -87,7 +87,7 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/findOne.do")
-	public TbGoods findOne(Long id){
+	public GoodsView findOne(Long id){
 		return goodsService.findOne(id);		
 	}
 	
