@@ -16,7 +16,7 @@ app.controller('contentCategoryController' ,function($scope,$controller   ,conte
 	$scope.findPage=function(page,rows){			
 		contentCategoryService.findPage(page,rows).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -71,7 +71,7 @@ app.controller('contentCategoryController' ,function($scope,$controller   ,conte
 	$scope.search=function(page,rows){			
 		contentCategoryService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
