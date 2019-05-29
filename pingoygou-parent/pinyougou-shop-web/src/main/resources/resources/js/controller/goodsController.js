@@ -61,6 +61,8 @@ app.controller('goodsController' ,function($scope,$controller,$location ,goodsSe
                     //添加成功后需要把输入框清空
                     $scope.entity={}
                     editor.html("");   //富文本框清空
+					//跳转到展示列表
+					location.href="/admin/goods.do";
 				}else{
 					alert(response.message);
 				}
