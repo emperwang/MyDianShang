@@ -85,7 +85,7 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
 	$scope.search=function(page,rows){			
 		goodsService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
