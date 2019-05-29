@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller,goodsService,itemCatService,typeTemplateService){
+app.controller('goodsController' ,function($scope,$controller,$location ,goodsService,itemCatService,typeTemplateService){
 	
 	$controller('publicController',{$scope:$scope});//继承
 	
@@ -23,7 +23,12 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
 	}
 	
 	//查询实体 
-	$scope.findOne=function(id){				
+	$scope.findOne=function(){
+		//url:http://127.0.0.1:9101/admin/goods-edit.do#?id=149187842867932
+		var id = $location.search()['id'];  //通过页面传参
+		if(id == null){
+			return;
+		}
 		goodsService.findOne(id).success(
 			function(response){
 				$scope.entity= response;					
