@@ -1,10 +1,12 @@
 package com.pinyougou.Controller;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import com.pinyougou.service.GoodsService;
 import com.pinyougou.viewEntity.GoodsView;
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,11 +45,15 @@ public class GoodsController {
 	
 	/**
 	 * 增加
-	 * @param goods
+	 * @param string
 	 * @return
 	 */
-	/*@RequestMapping("/add.do")
-	public Result add(@RequestBody TbGoods goods){
+	@RequestMapping("/add.do")
+	public Result add(@RequestBody String string){
+		GoodsView goods = JSON.parseObject(string, GoodsView.class);
+		//获取当前登陆的用户
+		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+		goods.getGoods().setSellerId(sellerId);
 		try {
 			goodsService.add(goods);
 			return new Result(true, "增加成功");
@@ -55,7 +61,7 @@ public class GoodsController {
 			e.printStackTrace();
 			return new Result(false, "增加失败");
 		}
-	}*/
+	}
 	
 	/**
 	 * 修改
@@ -63,9 +69,16 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/update.do")
-	public Result update(@RequestBody TbGoods goods){
+	public Result update(@RequestBody String goods){
+		GoodsView goodsView = JSON.parseObject(goods, GoodsView.class);
+		//获取当前登陆的用户
+		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+		//判断操作的商品是否是当前用户的
+		if (!sellerId.equals(goodsView.getGoods().getSellerId())){
+			return new Result(false, "非法操作");
+		}
 		try {
-			goodsService.update(goods);
+			goodsService.update(goodsView);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
