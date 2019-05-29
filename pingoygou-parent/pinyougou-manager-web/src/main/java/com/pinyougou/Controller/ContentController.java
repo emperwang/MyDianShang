@@ -1,6 +1,7 @@
 package com.pinyougou.Controller;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,9 +48,10 @@ public class ContentController {
 	 * @return
 	 */
 	@RequestMapping("/add.do")
-	public Result add(@RequestBody TbContent content){
+	public Result add(@RequestBody String content){
+		TbContent tbContent = JSON.parseObject(content, TbContent.class);
 		try {
-			contentService.add(content);
+			contentService.add(tbContent);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,9 +65,10 @@ public class ContentController {
 	 * @return
 	 */
 	@RequestMapping("/update.do")
-	public Result update(@RequestBody TbContent content){
+	public Result update(@RequestBody String content){
+		TbContent tbContent = JSON.parseObject(content, TbContent.class);
 		try {
-			contentService.update(content);
+			contentService.update(tbContent);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
