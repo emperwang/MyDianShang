@@ -91,5 +91,15 @@ app.controller('goodsController' ,function($scope,$controller ,goodsService,item
             }
         });
     }
+    //更新状态
+    $scope.updateGoodsStatus=function (status) {
+        goodsService.updateStatus($scope.selectIds,status).success(function (response) {
+			if(response.success){
+                $scope.reloadList();
+			}else{
+				alert(response.message);
+			}
+        });
+    }
     
 });	
