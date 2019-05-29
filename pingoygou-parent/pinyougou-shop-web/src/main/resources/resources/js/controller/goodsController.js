@@ -31,7 +31,9 @@ app.controller('goodsController' ,function($scope,$controller,$location ,goodsSe
 		}
 		goodsService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response;
+				//商品修改的富文本框回显
+                editor.html(response.goodsDesc.introduction);
 			}
 		);				
 	}
