@@ -173,4 +173,7 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
         return newList;
     }
 
+
+    //商品审核状态
+	$scope.status=['未审核','已审核','审核未通过','已关闭'];
 });	
