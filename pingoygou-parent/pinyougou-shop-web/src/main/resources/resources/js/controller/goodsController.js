@@ -34,6 +34,8 @@ app.controller('goodsController' ,function($scope,$controller,$location ,goodsSe
 				$scope.entity= response;
 				//商品修改的富文本框回显
                 editor.html(response.goodsDesc.introduction);
+                //商品扩展属性显示
+                $scope.entity.goodsDesc.customAttributeItems = JSON.parse(response.goodsDesc.customAttributeItems);
 			}
 		);				
 	}
@@ -132,8 +134,10 @@ app.controller('goodsController' ,function($scope,$controller,$location ,goodsSe
         	$scope.brandList=data.brandIds;
             $scope.brandList=JSON.parse($scope.brandList);
             //扩展属性
-            $scope.entity.goodsDesc.customAttributeItems=data.customAttributeItems;
-            $scope.entity.goodsDesc.customAttributeItems=JSON.parse($scope.entity.goodsDesc.customAttributeItems);
+			if ($location.search()['id']==null) { // 如果id未null,那么确定为添加,否则为修改
+                $scope.entity.goodsDesc.customAttributeItems = data.customAttributeItems;
+                $scope.entity.goodsDesc.customAttributeItems = JSON.parse($scope.entity.goodsDesc.customAttributeItems);
+            }
         });
         //查询规格的后台数据
         typeTemplateService.findSpecList(newValue).success(function(response){
