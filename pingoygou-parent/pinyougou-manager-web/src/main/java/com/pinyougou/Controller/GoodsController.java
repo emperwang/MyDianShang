@@ -2,6 +2,7 @@ package com.pinyougou.Controller;
 import java.util.List;
 
 import com.pinyougou.service.GoodsService;
+import com.pinyougou.viewEntity.GoodsView;
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,7 +46,7 @@ public class GoodsController {
 	 * @param goods
 	 * @return
 	 */
-	@RequestMapping("/add.do")
+	/*@RequestMapping("/add.do")
 	public Result add(@RequestBody TbGoods goods){
 		try {
 			goodsService.add(goods);
@@ -54,7 +55,7 @@ public class GoodsController {
 			e.printStackTrace();
 			return new Result(false, "增加失败");
 		}
-	}
+	}*/
 	
 	/**
 	 * 修改
@@ -78,7 +79,7 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/findOne.do")
-	public TbGoods findOne(Long id){
+	public GoodsView findOne(Long id){
 		return goodsService.findOne(id);		
 	}
 	
