@@ -1,7 +1,7 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller   ,goodsService){	
+app.controller('goodsController' ,function($scope,$controller ,goodsService,itemCatService){
 	
-	$controller('baseController',{$scope:$scope});//继承
+	$controller('publicController',{$scope:$scope});//继承
 	
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
@@ -16,7 +16,7 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 	$scope.findPage=function(page,rows){			
 		goodsService.findPage(page,rows).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -71,10 +71,25 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 	$scope.search=function(page,rows){			
 		goodsService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.results;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
 	}
+
+    //商品审核状态
+    $scope.status=['未审核','已审核','审核未通过','已关闭'];
+
+    //保存分类的名称
+    $scope.itemCatList=[];
+    //查找商品分类
+    $scope.findItemCatList=function () {
+        itemCatService.findAll().success(function (response) {
+            for(var i=0;i<response.length;i++){
+                //以id为list索引,name为索引的值
+                $scope.itemCatList[response[i].id]=response[i].name;
+            }
+        });
+    }
     
 });	
