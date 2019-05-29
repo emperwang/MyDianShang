@@ -123,5 +123,20 @@ public class GoodsController {
 	public PageResult search(@RequestBody TbGoods goods, int page, int rows  ){
 		return goodsService.findPage(goods, page, rows);		
 	}
-	
+
+	/**
+	 * 更新goods的审核状态
+	 * @param ids
+	 * @param status
+	 * @return
+	 */
+	@RequestMapping("/updateGoodsStatus.do")
+	public Result updateGoodsStatus(Long[] ids,String status){
+		try {
+			goodsService.updateGoodsStatus(ids,status);
+			return new Result(true,"更新成功");
+		}catch (Exception e){
+			return new Result(false,"更新失败");
+		}
+	}
 }
