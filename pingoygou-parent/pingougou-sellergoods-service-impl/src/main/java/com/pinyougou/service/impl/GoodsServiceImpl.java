@@ -82,6 +82,11 @@ public class GoodsServiceImpl implements GoodsService {
         TbGoodsDesc goodsDesc = goodsView.getGoodsDesc();
         goodsDesc.setGoodsId(goods.getId());
         goodsDescMapper.insert(goodsDesc);
+        InsetItemList(goodsView);
+    }
+
+    private void InsetItemList(GoodsView goodsView){
+        TbGoods goods = goodsView.getGoods();
         String isEnableSpec = goods.getIsEnableSpec();
         List<TbItem> items = goodsView.getItemList();
 
@@ -137,8 +142,18 @@ public class GoodsServiceImpl implements GoodsService {
      * 修改
      */
     @Override
-    public void update(TbGoods goods) {
-        goodsMapper.updateByPrimaryKey(goods);
+    public void update(GoodsView goods) {
+        //更新基本信息表
+        goodsMapper.updateByPrimaryKey(goods.getGoods());
+        //更新扩展表
+        goodsDescMapper.updateByPrimaryKey(goods.getGoodsDesc());
+        //先删除itemlist
+        TbItemExample example = new TbItemExample();
+        TbItemExample.Criteria criteria = example.createCriteria();
+        criteria.andGoodsIdEqualTo(goods.getGoods().getId());
+        itemMapper.deleteByExample(example);
+        //在添加itemlist
+        InsetItemList(goods);
     }
 
     /**

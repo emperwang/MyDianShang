@@ -47,7 +47,7 @@ public class GoodsController {
 	
 	/**
 	 * 增加
-	 * @param goods
+	 * @param string
 	 * @return
 	 */
 	@RequestMapping("/add.do")//GoodsView goods
@@ -71,9 +71,16 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/update.do")
-	public Result update(@RequestBody TbGoods goods){
+	public Result update(@RequestBody String goods){
+		GoodsView goodsView = JSON.parseObject(goods, GoodsView.class);
+		//获取当前登陆的用户
+		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+		//判断操作的商品是否是当前用户的
+		if (!sellerId.equals(goodsView.getGoods().getSellerId())){
+			return new Result(false, "非法操作");
+		}
 		try {
-			goodsService.update(goods);
+			goodsService.update(goodsView);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
