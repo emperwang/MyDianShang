@@ -1,5 +1,6 @@
 package com.pinyougou.service.impl;
 import java.util.List;
+import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.viewEntity.PageResult;
@@ -104,5 +105,11 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
 		long total = pageInfo.getTotal();
 		return new PageResult(total,list);
 	}
-	
+
+	@Override
+	public List<Map> selectContentCategoryOptionList() {
+		List<Map> maps = contentCategoryMapper.selectContentCategoryList();
+		return maps;
+	}
+
 }

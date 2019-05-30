@@ -1,5 +1,6 @@
 package com.pinyougou.Controller;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.viewEntity.PageResult;
 import com.pinyougou.viewEntity.Result;
@@ -110,5 +111,9 @@ public class ContentCategoryController {
 	public PageResult search(@RequestBody TbContentCategory contentCategory, int page, int rows  ){
 		return contentCategoryService.findPage(contentCategory, page, rows);		
 	}
-	
+	@RequestMapping("/contentCategoryOptionList.do")
+	public List<Map> selectContentCategoryOptionList(){
+		List<Map> maps = contentCategoryService.selectContentCategoryOptionList();
+		return maps;
+	}
 }

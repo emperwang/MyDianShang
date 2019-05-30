@@ -1,5 +1,7 @@
 package com.pinyougou.content.service;
 import java.util.List;
+import java.util.Map;
+
 import com.pinyougou.pojo.TbContentCategory;
 import com.pinyougou.viewEntity.PageResult;
 
@@ -57,5 +59,6 @@ public interface ContentCategoryService {
 	 * @return
 	 */
 	public PageResult findPage(TbContentCategory contentCategory, int pageNum, int pageSize);
-	
+
+	public List<Map> selectContentCategoryOptionList();
 }
