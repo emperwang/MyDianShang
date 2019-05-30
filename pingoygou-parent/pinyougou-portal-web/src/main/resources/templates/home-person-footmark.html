@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <title>待收货</title>
-     <link rel="icon" href="assets/img/favicon.ico">
+    <title>我的收藏</title>
+     <link rel="icon" href="/assets/img/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
-    <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+    <link rel="stylesheet" type="text/css" href="/css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pages-seckillOrder.css" />
 </head>
 
 <body>
@@ -146,12 +146,12 @@ $(function(){
     <!--header-->
     <div id="account">
         <div class="py-container">
-            <div class="yui3-g home">
+            <div class="yui3-g collect">
                 <!--左侧列表-->
                 <div class="yui3-u-1-6 list">
 
                     <div class="person-info">
-                        <div class="person-photo"><img src="img/_/photo.png" alt=""></div>
+                        <div class="person-photo"><img src="/img/_/photo.png" alt=""></div>
                         <div class="person-account">
                             <span class="name">Michelle</span>
                             <span class="safe">账户安全</span>
@@ -161,16 +161,16 @@ $(function(){
                     <div class="list-items">
                         <dl>
 							<dt><i>·</i> 订单中心</dt>
-							<dd ><a href="home-index.html"  >我的订单</a></dd>
+							<dd ><a href="home-index.html"   >我的订单</a></dd>
 							<dd><a href="home-order-pay.html" >待付款</a></dd>
 							<dd><a href="home-order-send.html"  >待发货</a></dd>
-							<dd><a href="home-order-receive.html" class="list-active">待收货</a></dd>
-							<dd><a href="home-order-evaluate.html"  >待评价</a></dd>
+							<dd><a href="home-order-receive.html" >待收货</a></dd>
+							<dd><a href="home-order-evaluate.html" >待评价</a></dd>
 						</dl>
 						<dl>
 							<dt><i>·</i> 我的中心</dt>
-							<dd><a href="home-person-collect.html">我的收藏</a></dd>
-							<dd><a href="home-person-footmark.html">我的足迹</a></dd>
+							<dd><a href="home-person-collect.html" >我的收藏</a></dd>
+							<dd><a href="home-person-footmark.html" class="list-active">我的足迹</a></dd>
 						</dl>
 						<dl>
 							<dt><i>·</i> 物流消息</dt>
@@ -184,159 +184,97 @@ $(function(){
                     </div>
                 </div>
                 <!--右侧主内容-->
-                <div class="yui3-u-5-6 order-pay">
+                <div class="yui3-u-5-6 goods">
                     <div class="body">
-                        <div class="table-title">
-                            <table class="sui-table  order-table">
-                                <tr>
-                                    <thead>
-                                        <th width="35%">宝贝</th>
-                                        <th width="5%">单价</th>
-                                        <th width="5%">数量</th>
-                                        <th width="8%">商品操作</th>
-                                        <th width="10%">实付款</th>
-                                        <th width="10%">交易状态</th>
-                                        <th width="10%">交易操作</th>
-                                    </thead>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="order-detail">
-                            <div class="orders">
-                                <div class="choose-order">
-                                    <div class="sui-pagination pagination-large top-pages">
-                                        <ul>
-                                            <li class="prev disabled"><a href="#">上一页</a></li>
-
-                                            <li class="next"><a href="#">下一页</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!--order1-->
-                                <div class="choose-title">
-                                    <label data-toggle="checkbox" class="checkbox-pretty ">
-                                           <input type="checkbox" checked="checked"><span>2017-02-11 11:59　订单编号：7867473872181848  店铺：哇哈哈 <a>和我联系</a></span>
-                                     </label>
-                                    <a class="sui-btn btn-info share-btn">分享</a>
-                                </div>
-                                <table class="sui-table table-bordered order-datatable">
-                                    <tbody>
-                                        <tr>
-                                            <td width="35%">
-                                                <div class="typographic"><img src="img/goods.png" />
-                                                    <a href="#" class="block-text">包邮 正品玛姬儿压缩面膜无纺布纸膜100粒 送泡瓶面膜刷喷瓶 新款</a>
-                                                    <span class="guige">规格：温泉喷雾150ml</span>
-                                                </div>
-                                            </td>
-                                            <td width="5%" class="center">
-                                                <ul class="unstyled">
-                                                    <li class="o-price">¥599.00</li>
-                                                    <li>¥299.00</li>
-                                                </ul>
-                                            </td>
-                                            <td width="5%" class="center">1</td>
-                                            <td width="8%" class="center">
-                                                <ul class="unstyled">
-                                                    <li><a>退货/退款</a></li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>¥299.00</li>
-                                                    <li>（含运费：￥0.00）</li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>物流派件中</li>                                                  
-                                                    <li><a href="orderDetail.html" class="btn">订单详情 </a></li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>还剩8天10小时</li>
-                                                    <li><a href="#" class="sui-btn btn-info">确认收货</a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <!--order2-->
-                                <div class="choose-title">
-                                    <label data-toggle="checkbox" class="checkbox-pretty ">
-                                           <input type="checkbox" checked="checked"><span>2017-02-11 11:59　订单编号：7867473872181848  店铺：哇哈哈 <a>和我联系</a></span>
-                                     </label>
-                                    <a class="sui-btn btn-info share-btn">分享</a>
-                                </div>
-                                <table class="sui-table table-bordered order-datatable">
-                                    <tbody>
-                                        <tr>
-                                            <td width="35%">
-                                                <div class="typographic"><img src="img/goods.png" />
-                                                    <a href="#" class="block-text">包邮 正品玛姬儿压缩面膜无纺布纸膜100粒 送泡瓶面膜刷喷瓶 新款</a>
-                                                    <span class="guige">规格：温泉喷雾150ml</span>
-                                                </div>
-                                            </td>
-                                            <td width="5%" class="center">
-                                                <ul class="unstyled">
-                                                    <li class="o-price">¥599.00</li>
-                                                    <li>¥299.00</li>
-                                                </ul>
-                                            </td>
-                                            <td width="5%" class="center">1</td>
-                                            <td width="8%" class="center">
-                                                <ul class="unstyled">
-
-                                                    <li><a>退货</a></li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>¥299.00</li>
-                                                    <li>（含运费：￥0.00）</li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>快件已签收</li>
-                                                    <li><a href="orderDetail.html" class="btn">订单详情 </a></li>
-                                                </ul>
-                                            </td>
-                                            <td width="10%" class="center">
-                                                <ul class="unstyled">
-                                                    <li>还剩8天10小时</li>
-                                                    <li><a href="#" class="sui-btn btn-info">提醒发货</a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="choose-order">
-
-                                <div class="sui-pagination pagination-large top-pages">
-                                    <ul>
-                                        <li class="prev disabled"><a href="#">«上一页</a></li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li class="dotted"><span>...</span></li>
-                                        <li class="next"><a href="#">下一页»</a></li>
-                                    </ul>
-                                    <div><span>共10页&nbsp;</span><span>
-                                            到
-                                            <input type="text" class="page-num"><button class="page-confirm" onclick="alert(1)">确定</button>
-                                            页</span></div>
-                                </div>
-                            </div>
-
-                            <div class="clearfix"></div>
+                        <h4>全部足迹 12</h4>
+                        <div class="goods-list">
+                            <ul class="yui3-g" id="goods-list">
+                                 <li class="yui3-u-1-4">
+                                        <div class="list-wrap">
+                                            <div class="p-img"><img src="/img/_/t.jpg" alt=''></div>
+                                            <div class="price"><strong><em>¥</em> <i>139.00</i></strong></div>
+                                            <div class="attr"><em>Apple苹果iPhone 6s 32G金色 移动联通电信4G手机</em></div>
+                                            <div class="cu"><em><span>促</span>满一件可参加超值换购</em></div>
+                                            <div class="operate">
+                                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">降价通知</a>
+                                            </div>
+                                        </div>
+                                    </li >
+                                    <li class="yui3-u-1-4">
+                                        <div class="list-wrap">
+                                            <div class="p-img"><img src="/img/_/t.jpg" alt=''></div>
+                                            <div class="price"><strong><em>¥</em> <i>139.00</i></strong></div>
+                                            <div class="attr"><em>Apple苹果iPhone 6s 32G金色 移动联通电信4G手机</em></div>
+                                            <div class="cu"><em><span>促</span>满一件可参加超值换购</em></div>
+                                            <div class="operate">
+                                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">降价通知</a>
+                                            </div>
+                                        </div>
+                                    </li >
+                                    <li class="yui3-u-1-4">
+                                        <div class="list-wrap">
+                                            <div class="p-img"><img src="/img/_/t.jpg" alt=''></div>
+                                            <div class="price"><strong><em>¥</em> <i>139.00</i></strong></div>
+                                            <div class="attr"><em>Apple苹果iPhone 6s 32G金色 移动联通电信4G手机</em></div>
+                                            <div class="cu"><em><span>促</span>满一件可参加超值换购</em></div>
+                                            <div class="operate">
+                                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">降价通知</a>
+                                            </div>
+                                        </div>
+                                    </li >
+                                    <li class="yui3-u-1-4">
+                                        <div class="list-wrap">
+                                            <div class="p-img"><img src="/img/_/t.jpg" alt=''></div>
+                                            <div class="price"><strong><em>¥</em> <i>139.00</i></strong></div>
+                                            <div class="attr"><em>Apple苹果iPhone 6s 32G金色 移动联通电信4G手机</em></div>
+                                            <div class="cu"><em><span>促</span>满一件可参加超值换购</em></div>
+                                            <div class="operate">
+                                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">降价通知</a>
+                                            </div>
+                                        </div>
+                                    </li >
+                                    <li class="yui3-u-1-4">
+                                        <div class="list-wrap">
+                                            <div class="p-img"><img src="/img/_/t.jpg" alt=''></div>
+                                            <div class="price"><strong><em>¥</em> <i>139.00</i></strong></div>
+                                            <div class="attr"><em>Apple苹果iPhone 6s 32G金色 移动联通电信4G手机</em></div>
+                                            <div class="cu"><em><span>促</span>满一件可参加超值换购</em></div>
+                                            <div class="operate">
+                                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">降价通知</a>
+                                            </div>
+                                        </div>
+                                    </li >
+                                    <li class="yui3-u-1-4">
+                                        <div class="list-wrap">
+                                            <div class="p-img"><img src="/img/_/t.jpg" alt=''></div>
+                                            <div class="price"><strong><em>¥</em> <i>139.00</i></strong></div>
+                                            <div class="attr"><em>Apple苹果iPhone 6s 32G金色 移动联通电信4G手机</em></div>
+                                            <div class="cu"><em><span>促</span>满一件可参加超值换购</em></div>
+                                            <div class="operate">
+                                                <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
+                                                <a href="javascript:void(0);" class="sui-btn btn-bordered">降价通知</a>
+                                            </div>
+                                        </div>
+                                    </li >
+                            </ul>
                         </div>
 
+
+                        <!--猜你喜欢-->
                         <div class="like-title">
                             <div class="mt">
-                                <span class="fl"><strong>热卖单品</strong></span>
+                                <span class="fl"><strong>猜你喜欢</strong></span>
                             </div>
                         </div>
                         <div class="like-list">
@@ -344,7 +282,7 @@ $(function(){
                                 <li class="yui3-u-1-4">
                                     <div class="list-wrap">
                                         <div class="p-img">
-                                            <img src="img/_/itemlike01.png" />
+                                            <img src="/img/_/itemlike01.png" />
                                         </div>
                                         <div class="attr">
                                             <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -363,7 +301,7 @@ $(function(){
                                 <li class="yui3-u-1-4">
                                     <div class="list-wrap">
                                         <div class="p-img">
-                                            <img src="img/_/itemlike02.png" />
+                                            <img src="/img/_/itemlike02.png" />
                                         </div>
                                         <div class="attr">
                                             <em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
@@ -382,7 +320,7 @@ $(function(){
                                 <li class="yui3-u-1-4">
                                     <div class="list-wrap">
                                         <div class="p-img">
-                                            <img src="img/_/itemlike03.png" />
+                                            <img src="/img/_/itemlike03.png" />
                                         </div>
                                         <div class="attr">
                                             <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -401,7 +339,7 @@ $(function(){
                                 <li class="yui3-u-1-4">
                                     <div class="list-wrap">
                                         <div class="p-img">
-                                            <img src="img/_/itemlike04.png" />
+                                            <img src="/img/_/itemlike04.png" />
                                         </div>
                                         <div class="attr">
                                             <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
@@ -534,7 +472,7 @@ $(function(){
 					</div>
 					<div class="yui3-u-1-6">
 						<h4>帮助中心</h4>
-						<img src="img/wx_cz.jpg">
+						<img src="/img/wx_cz.jpg">
 					</div>
 				</div>
 			</div>
@@ -558,7 +496,6 @@ $(function(){
 	</div>
 </div>
 <!--页面底部END-->
-
 undefined
 
 </html>

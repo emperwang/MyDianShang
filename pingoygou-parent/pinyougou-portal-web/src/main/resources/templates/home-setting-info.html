@@ -8,8 +8,8 @@
     <title>设置-个人信息</title>
      <link rel="icon" href="/assets/img/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
-    <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+    <link rel="stylesheet" type="text/css" href="/css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pages-seckillOrder.css" />
 </head>
 
 <body>
@@ -140,134 +140,22 @@ $(function(){
 </script>
 <script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
 <script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
 <script type="text/javascript" src="js/widget/nav.js"></script>
-<script type="text/javascript" src="plugins/jquery.validate/jquery.validate.js"></script>
+<script type="text/javascript" src="js/plugins/birthday/birthday.js"></script>
+<script type="text/javascript" src="js/plugins/citypicker/distpicker.data.js"></script>
+<script type="text/javascript" src="js/plugins/citypicker/distpicker.js"></script>
+<script type="text/javascript" src="js/plugins/upload/uploadPreview.js"></script>
+<script type="text/javascript" src="js/pages/main.js"></script>
 <script>
-        $(function(){
-            //jquery.validate
-            $("#phone-form").validate({
-            submitHandler: function() {
-                //验证通过后 的js代码写在这里
-            }
-        })		
-        })
-    
-        //下面是一些常用的验证规则扩展
-
-        /*-------------验证插件配置 懒人建站http://www.51xuediannao.com/-------------*/
-
-        //配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
-        $.validator.setDefaults({
-        errorElement:'span'
-        });
-
-        //配置通用的默认提示语
-        $.extend($.validator.messages, {
-        required: '必填',
-        equalTo: "请再次输入相同的值"
-        });
-
-        /*-------------扩展验证规则使用-------------*/
-        //邮箱 
-        jQuery.validator.addMethod("mail", function (value, element) {
-        var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
-        return this.optional(element) || (mail.test(value));
-        }, "邮箱格式不对");
-
-        //电话验证规则
-        jQuery.validator.addMethod("phone", function (value, element) {
-        var phone = /^0\d{2,3}-\d{7,8}$/;
-        return this.optional(element) || (phone.test(value));
-        }, "电话格式如：0371-68787027");
-
-        //区号验证规则  
-        jQuery.validator.addMethod("ac", function (value, element) {
-        var ac = /^0\d{2,3}$/;
-        return this.optional(element) || (ac.test(value));
-        }, "区号如：010或0371");
-
-        //无区号电话验证规则  
-        jQuery.validator.addMethod("noactel", function (value, element) {
-        var noactel = /^\d{7,8}$/;
-        return this.optional(element) || (noactel.test(value));
-        }, "电话格式如：68787027");
-
-        //手机验证规则  
-        jQuery.validator.addMethod("mobile", function (value, element) {
-        var mobile = /^1[3|4|5|7|8]\d{9}$/;
-        return this.optional(element) || (mobile.test(value));
-        }, "手机格式不对");
-
-        //邮箱或手机验证规则  
-        jQuery.validator.addMethod("mm", function (value, element) {
-        var mm = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|7|8]\d{9}$/;
-        return this.optional(element) || (mm.test(value));
-        }, "格式不对");
-
-        //电话或手机验证规则  
-        jQuery.validator.addMethod("tm", function (value, element) {
-        var tm=/(^1[3|4|5|7|8]\d{9}$)|(^\d{3,4}-\d{7,8}$)|(^\d{7,8}$)|(^\d{3,4}-\d{7,8}-\d{1,4}$)|(^\d{7,8}-\d{1,4}$)/;
-        return this.optional(element) || (tm.test(value));
-        }, "格式不对");
-
-        //年龄
-        jQuery.validator.addMethod("age", function(value, element) {   
-        var age = /^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
-        return this.optional(element) || (age.test(value));
-        }, "不能超过120岁"); 
-        ///// 20-60   /^([2-5]\d)|60$/
-
-        //传真
-        jQuery.validator.addMethod("fax",function(value,element){
-        var fax = /^(\d{3,4})?[-]?\d{7,8}$/;
-        return this.optional(element) || (fax.test(value));
-        },"传真格式如：0371-68787027");
-
-        //验证当前值和目标val的值相等 相等返回为 false
-        jQuery.validator.addMethod("equalTo2",function(value, element){
-        var returnVal = true;
-        var id = $(element).attr("data-rule-equalto2");
-        var targetVal = $(id).val();
-        if(value === targetVal){
-            returnVal = false;
-        }
-        return returnVal;
-        },"不能和原始密码相同");
-
-        //大于指定数
-        jQuery.validator.addMethod("gt",function(value, element){
-        var returnVal = false;
-        var gt = $(element).data("gt");
-        if(value > gt && value != ""){
-            returnVal = true;
-        }
-        return returnVal;
-        },"不能小于0 或空");
-
-        //汉字
-        jQuery.validator.addMethod("chinese", function (value, element) {
-        var chinese = /^[\u4E00-\u9FFF]+$/;
-        return this.optional(element) || (chinese.test(value));
-        }, "格式不对");
-
-        //指定数字的整数倍
-        jQuery.validator.addMethod("times", function (value, element) {
-        var returnVal = true;
-        var base=$(element).attr('data-rule-times');
-        if(value%base!=0){
-            returnVal=false;
-        }
-        return returnVal;
-        }, "必须是发布赏金的整数倍");
-
-        //身份证
-        jQuery.validator.addMethod("idCard", function (value, element) {
-        var isIDCard1=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/;//(15位)
-        var isIDCard2=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;//(18位)
-
-        return this.optional(element) || (isIDCard1.test(value)) || (isIDCard2.test(value));
-        }, "格式不对");
-    </script>
+            $(function() {               
+                $.ms_DatePicker({
+                    YearSelector: "#select_year2",
+                    MonthSelector: "#select_month2",
+                    DaySelector: "#select_day2"
+                });
+            });
+        </script>
 </body>
     <!--header-->
     <div id="account">
@@ -277,7 +165,7 @@ $(function(){
                 <div class="yui3-u-1-6 list">
 
                     <div class="person-info">
-                        <div class="person-photo"><img src="img/_/photo.png" alt=""></div>
+                        <div class="person-photo"><img src="/img/_/photo.png" alt=""></div>
                         <div class="person-account">
                             <span class="name">Michelle</span>
                             <span class="safe">账户安全</span>
@@ -303,106 +191,96 @@ $(function(){
 						</dl>
 						<dl>
 							<dt><i>·</i> 设置</dt>
-							<dd><a href="home-setting-info.html" >个人信息</a></dd>
-							<dd><a href="home-setting-address.html" >地址管理</a></dd>
-							<dd><a href="home-setting-safe.html" class="list-active" >安全管理</a></dd>
+							<dd><a href="home-setting-info.html" class="list-active">个人信息</a></dd>
+							<dd><a href="home-setting-address.html"  >地址管理</a></dd>
+							<dd><a href="home-setting-safe.html" >安全管理</a></dd>
 						</dl>
                     </div>
                 </div>
                 <!--右侧主内容-->
                 <div class="yui3-u-5-6">
-                    <div class="body userSafe">
+                    <div class="body userInfo">
                         <ul class="sui-nav nav-tabs nav-large nav-primary ">
-                            <li><a href="#one" data-toggle="tab">密码设置</a></li>
-                            <li class="active"><a href="#two" data-toggle="tab">绑定手机</a></li>
+                            <li class="active"><a href="#one" data-toggle="tab">基本资料</a></li>
+                            <li><a href="#two" data-toggle="tab">头像照片</a></li>
                         </ul>
                         <div class="tab-content ">
-                            <div id="one" class="tab-pane">
-                                <form class="sui-form form-horizontal sui-validate" id="jsForm">
+                            <div id="one" class="tab-pane active">
+                                <form id="form-msg" class="sui-form form-horizontal">
                                     <div class="control-group">
-                                        <label for="inputusername" class="control-label">用户名：</label>
+                                        <label for="inputName" class="control-label">昵称：</label>
                                         <div class="controls">
-                                            <input id="pwdid" class="fn-tinput" data-rule-remote="http://www.baidu.com" type="password" name="OldPassword" placeholder="输入昵称"
-                                                required data-msg-required="请输入昵称" minlength="6" data-msg-minlength="至少输入6个字符"
-                                            />
+                                            <input type="text" id="inputName" name="email" placeholder="昵称">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="inputGender" class="control-label">性别：</label>
+                                        <div class="controls">
+                                            <label data-toggle="radio" class="radio-pretty inline">
+                                            <input type="radio" name="gender" value="1"><span>男</span>
+                                        </label>
+                                            <label data-toggle="radio" class="radio-pretty inline">
+                                            <input type="radio" name="gender" value="2"><span>女</span>
+                                        </label>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="inputPassword" class="control-label">生日：</label>
+                                        <div class="controls">
+                                            <select id="select_year2" rel="1990"></select>年
+                                            <select id="select_month2" rel="4"></select>月
+                                            <select id="select_day2" rel="3"></select>日
+                                        </div>
+                                    </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputPassword" class="control-label">密码：</label>
-                                        <div class="controls">
-                                            <input class="fn-tinput" type="password" name="password" value="" placeholder="新密码" required id="password" data-rule-remote="php.php">
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputRepassword" class="control-label">重复密码：</label>
-                                        <div class="controls">
-                                            <input class="fn-tinput" type="password" name="confirm_password" value="" placeholder="确认新密码" required equalTo="#password">
-                                        </div>
-                                    </div>
 
                                     <div class="control-group">
-                                        <label class="control-label"></label>
+                                        <label for="inputPassword" class="control-label">所在地：</label>
                                         <div class="controls">
-                                            <button type="submit" class="sui-btn btn-primary">提交按钮</button>
+                                            <div data-toggle="distpicker">
+                                                <div class="form-group area">
+                                                    <select class="form-control" id="province1"></select>
+                                                </div>
+                                                <div class="form-group area">
+                                                    <select class="form-control" id="city1"></select>
+                                                </div>
+                                                <div class="form-group area">
+                                                    <select class="form-control" id="district1"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="inputJob" class="control-label">职业：</label>
+                                        <div class="controls"><span class="sui-dropdown dropdown-bordered select"><span class="dropdown-inner"><a role="button" data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                                <input name="job" type="hidden" data-rules="required"><i class="caret"></i><span>请选择</span></a>
+                                            <ul id="menu4" role="menu" aria-labelledby="drop4" class="sui-dropdown-menu">
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="bj">程序员</a></li>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="sb">产品经理</a></li>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="sb">UI设计师</a></li>
+                                            </ul>
+                                            </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="sanwei" class="control-label"></label>
+                                        <div class="controls">
+                                            <button type="submit" class="sui-btn btn-primary">立即注册</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div id="two" class="tab-pane active">
-                                <!--步骤条-->
-                                <div class="sui-steps steps-auto">
-                                    <div class="wrap">
-                                        <div class="finished">
-                                        <label><span class="round"><i class="sui-icon icon-pc-right"></i></span><span>第一步 验证身份</span></label><i class="triangle-right-bg"></i><i class="triangle-right"></i>
-                                        </div>
+                            <div id="two" class="tab-pane">
+
+                                <div class="new-photo">
+                                    <p>当前头像：</p>
+                                    <div class="upload">
+                                        <img id="imgShow_WU_FILE_0" width="100" height="100" src="/img/_/photo_icon.png" alt="">
+                                        <input type="file" id="up_img_WU_FILE_0" />
                                     </div>
-                                    <div class="wrap">
-                                        <div class="current">
-                                        <label><span class="round">2</span><span>第二步 绑定新手机号</span></label><i class="triangle-right-bg"></i><i class="triangle-right"></i>
-                                        </div>
-                                    </div>
-                                    <div class="wrap">
-                                        <div class="todo">
-                                        <label><span class="round">3</span><span>第三步 完成</span></label>
-                                        </div>
-                                    </div>
+
                                 </div>
-
-                                <!--表单-->
-
-                                <form class="sui-form form-horizontal sui-validate" data-toggle='validate' id="phone-form">
-
-                                    <div class="control-group">
-                                        <label for="inputPassword" class="control-label">手机号：</label>
-                                        <div class="controls">
-                                            <input name="inputphone" type="text" id="inputphone" placeholder="请输入新手机号">
-                                        </div>                            
-                                    </div>
-                                     <div class="control-group">
-                                        <label for="inputcode" class="control-label">验证码：</label>
-                                        <div class="controls">
-                                            <input name="inputcode" type="text" id="inputcode">
-                                        </div>
-                                        <div class="controls">
-                                            验证码
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputRepassword" class="control-label">短信验证码：</label>
-                                        <div class="controls">
-                                            <input name="msgcode" type="text" id="msgcode">
-                                        </div>
-                                        <div class="controls">
-                                            <button class="sui-btn btn-info">发送</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="control-group next-btn">
-                                        <a class="sui-btn btn-primary" href="home-setting-safe.html">上一步</a>&nbsp;
-                                        <a class="sui-btn btn-primary" type="submit" href="home-setting-address-complete.html">下一步</a>
-                                    </div>
-                                </form>
                             </div>
                         </div>
 
@@ -520,7 +398,7 @@ $(function(){
 					</div>
 					<div class="yui3-u-1-6">
 						<h4>帮助中心</h4>
-						<img src="img/wx_cz.jpg">
+						<img src="/img/wx_cz.jpg">
 					</div>
 				</div>
 			</div>
@@ -544,7 +422,6 @@ $(function(){
 	</div>
 </div>
 <!--页面底部END-->
-
 
 undefined
 

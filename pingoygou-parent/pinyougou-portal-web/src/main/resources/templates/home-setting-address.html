@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <title>设置-个人信息</title>
-     <link rel="icon" href="/assets/img/favicon.ico">
+     <link rel="icon" href="assets/img/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
-    <link rel="stylesheet" type="text/css" href="css/pages-seckillOrder.css" />
+    <link rel="stylesheet" type="text/css" href="/css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pages-seckillOrder.css" />
 </head>
 
 <body>
@@ -142,20 +142,9 @@ $(function(){
 <script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
 <script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
 <script type="text/javascript" src="js/widget/nav.js"></script>
-<script type="text/javascript" src="js/plugins/birthday/birthday.js"></script>
-<script type="text/javascript" src="js/plugins/citypicker/distpicker.data.js"></script>
-<script type="text/javascript" src="js/plugins/citypicker/distpicker.js"></script>
-<script type="text/javascript" src="js/plugins/upload/uploadPreview.js"></script>
-<script type="text/javascript" src="js/pages/main.js"></script>
-<script>
-            $(function() {               
-                $.ms_DatePicker({
-                    YearSelector: "#select_year2",
-                    MonthSelector: "#select_month2",
-                    DaySelector: "#select_day2"
-                });
-            });
-        </script>
+<script type="text/javascript" src="pages/userInfo/distpicker.data.js"></script>
+<script type="text/javascript" src="pages/userInfo/distpicker.js"></script>
+<script type="text/javascript" src="pages/userInfo/main.js"></script>
 </body>
     <!--header-->
     <div id="account">
@@ -165,7 +154,7 @@ $(function(){
                 <div class="yui3-u-1-6 list">
 
                     <div class="person-info">
-                        <div class="person-photo"><img src="img/_/photo.png" alt=""></div>
+                        <div class="person-photo"><img src="/img/_/photo.png" alt=""></div>
                         <div class="person-account">
                             <span class="name">Michelle</span>
                             <span class="safe">账户安全</span>
@@ -191,53 +180,75 @@ $(function(){
 						</dl>
 						<dl>
 							<dt><i>·</i> 设置</dt>
-							<dd><a href="home-setting-info.html" class="list-active">个人信息</a></dd>
-							<dd><a href="home-setting-address.html"  >地址管理</a></dd>
+							<dd><a href="home-setting-info.html" >个人信息</a></dd>
+							<dd><a href="home-setting-address.html" class="list-active" >地址管理</a></dd>
 							<dd><a href="home-setting-safe.html" >安全管理</a></dd>
 						</dl>
                     </div>
                 </div>
                 <!--右侧主内容-->
                 <div class="yui3-u-5-6">
-                    <div class="body userInfo">
-                        <ul class="sui-nav nav-tabs nav-large nav-primary ">
-                            <li class="active"><a href="#one" data-toggle="tab">基本资料</a></li>
-                            <li><a href="#two" data-toggle="tab">头像照片</a></li>
-                        </ul>
-                        <div class="tab-content ">
-                            <div id="one" class="tab-pane active">
-                                <form id="form-msg" class="sui-form form-horizontal">
-                                    <div class="control-group">
-                                        <label for="inputName" class="control-label">昵称：</label>
-                                        <div class="controls">
-                                            <input type="text" id="inputName" name="email" placeholder="昵称">
-                                        </div>
+                    <div class="body userAddress">
+                        <div class="address-title">
+                            <span class="title">地址管理</span>
+                            <a data-toggle="modal" data-target=".edit" data-keyboard="false"   class="sui-btn  btn-info add-new">添加新地址</a>
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="address-detail">
+                            <table class="sui-table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>姓名</th>
+                                        <th>地址</th>
+                                        <th>联系电话</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>刘田田</td>
+                                        <td>北京 北京市 海淀区 上地街道东北旺西路8号中关村软件园9号楼</td>
+                                        <td>1774***********4</td>
+                                        <td>
+                                            <a href="#">编辑</a>
+                                            <a href="#">删除</a>
+                                            默认地址
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>沈沉</td>
+                                        <td>北京 北京市 海淀区 上地街道东北旺西路8号中关村软件园9号楼</td>
+                                        <td>1774***********4</td>
+                                        <td>
+                                            <a href="#">编辑</a>
+                                            <a href="#">删除</a>
+                                            <a href="#">设为默认</a>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>                          
+                        </div>
+                        <!--新增地址弹出层-->
+                         <div  tabindex="-1" role="dialog" data-hasfoot="false" class="sui-modal hide fade edit" style="width:580px;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="sui-close">×</button>
+                                        <h4 id="myModalLabel" class="modal-title">新增地址</h4>
                                     </div>
-                                    <div class="control-group">
-                                        <label for="inputGender" class="control-label">性别：</label>
-                                        <div class="controls">
-                                            <label data-toggle="radio" class="radio-pretty inline">
-                                            <input type="radio" name="gender" value="1"><span>男</span>
-                                        </label>
-                                            <label data-toggle="radio" class="radio-pretty inline">
-                                            <input type="radio" name="gender" value="2"><span>女</span>
-                                        </label>
+                                    <div class="modal-body">
+                                        <form action="" class="sui-form form-horizontal">
+                                            <div class="control-group">
+                                            <label class="control-label">收货人：</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputPassword" class="control-label">生日：</label>
-                                        <div class="controls">
-                                            <select id="select_year2" rel="1990"></select>年
-                                            <select id="select_month2" rel="4"></select>月
-                                            <select id="select_day2" rel="3"></select>日
-                                        </div>
-                                    </div>
-
-
-                                    <div class="control-group">
-                                        <label for="inputPassword" class="control-label">所在地：</label>
-                                        <div class="controls">
-                                            <div data-toggle="distpicker">
+                                        <div class="control-group">
+                                            <label class="control-label">所在地区：</label>
+                                            <div class="controls">
+                                                <div data-toggle="distpicker">
                                                 <div class="form-group area">
                                                     <select class="form-control" id="province1"></select>
                                                 </div>
@@ -248,41 +259,47 @@ $(function(){
                                                     <select class="form-control" id="district1"></select>
                                                 </div>
                                             </div>
+                                            </div>									 
                                         </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="inputJob" class="control-label">职业：</label>
-                                        <div class="controls"><span class="sui-dropdown dropdown-bordered select"><span class="dropdown-inner"><a role="button" data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                                <input name="job" type="hidden" data-rules="required"><i class="caret"></i><span>请选择</span></a>
-                                            <ul id="menu4" role="menu" aria-labelledby="drop4" class="sui-dropdown-menu">
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="bj">程序员</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="sb">产品经理</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);" value="sb">UI设计师</a></li>
-                                            </ul>
-                                            </span>
-                                            </span>
+                                        <div class="control-group">
+                                            <label class="control-label">详细地址：</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-large">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label for="sanwei" class="control-label"></label>
-                                        <div class="controls">
-                                            <button type="submit" class="sui-btn btn-primary">立即注册</button>
+                                        <div class="control-group">
+                                            <label class="control-label">联系电话：</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium">
+                                            </div>
                                         </div>
+                                        <div class="control-group">
+                                            <label class="control-label">邮箱：</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium">
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label">地址别名：</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium">
+                                            </div>
+                                            <div class="othername">
+                                                建议填写常用地址：<a href="#" class="sui-btn btn-default">家里</a>　<a href="#" class="sui-btn btn-default">父母家</a>　<a href="#" class="sui-btn btn-default">公司</a>
+                                            </div>
+                                        </div>
+                                        
+                                        </form>
+                                        
+                                        
                                     </div>
-                                </form>
-                            </div>
-                            <div id="two" class="tab-pane">
-
-                                <div class="new-photo">
-                                    <p>当前头像：</p>
-                                    <div class="upload">
-                                        <img id="imgShow_WU_FILE_0" width="100" height="100" src="img/_/photo_icon.png" alt="">
-                                        <input type="file" id="up_img_WU_FILE_0" />
+                                    <div class="modal-footer">
+                                        <button type="button" data-ok="modal" class="sui-btn btn-primary btn-large">确定</button>
+                                        <button type="button" data-dismiss="modal" class="sui-btn btn-default btn-large">取消</button>
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
+						</div>
 
                     </div>
                 </div>
@@ -398,7 +415,7 @@ $(function(){
 					</div>
 					<div class="yui3-u-1-6">
 						<h4>帮助中心</h4>
-						<img src="img/wx_cz.jpg">
+						<img src="/img/wx_cz.jpg">
 					</div>
 				</div>
 			</div>
@@ -422,6 +439,8 @@ $(function(){
 	</div>
 </div>
 <!--页面底部END-->
+
+
 
 undefined
 
