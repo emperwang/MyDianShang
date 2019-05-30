@@ -161,4 +161,7 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectContentCategoryList" resultType="java.util.Map">
+    SELECT id,name AS text FROM tb_content_category
+  </select>
 </mapper>

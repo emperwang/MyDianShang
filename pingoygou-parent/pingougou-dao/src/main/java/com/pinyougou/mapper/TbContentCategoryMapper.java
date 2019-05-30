@@ -5,6 +5,7 @@ import com.pinyougou.pojo.TbContentCategoryExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TbContentCategoryMapper {
     long countByExample(TbContentCategoryExample example);
@@ -28,4 +29,6 @@ public interface TbContentCategoryMapper {
     int updateByPrimaryKeySelective(TbContentCategory record);
 
     int updateByPrimaryKey(TbContentCategory record);
+
+    List<Map> selectContentCategoryList();
 }
