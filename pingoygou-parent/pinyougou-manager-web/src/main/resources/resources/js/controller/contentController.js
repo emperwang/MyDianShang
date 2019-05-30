@@ -1,5 +1,5 @@
  //控制层 
-app.controller('contentController' ,function($scope,$controller   ,contentService){	
+app.controller('contentController' ,function($scope,$controller,contentService,contentCategoryService){
 	
 	$controller('publicController',{$scope:$scope});//继承
 	
@@ -76,5 +76,13 @@ app.controller('contentController' ,function($scope,$controller   ,contentServic
 			}			
 		);
 	}
-    
+	//广告分类列表
+	//格式:{data:[{'id':1,'text':'lll'},{}]}
+	$scope.contentCategoryList=[];
+	$scope.contentCategoryService=function () {
+        contentCategoryService.selectContentCategoryOptionList().success(function (response) {
+			$scope.contentCategoryList={data:response}
+        });
+    }
+
 });	

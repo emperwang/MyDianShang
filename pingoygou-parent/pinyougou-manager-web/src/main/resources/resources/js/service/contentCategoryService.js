@@ -28,5 +28,9 @@ app.service('contentCategoryService',function($http){
 	//搜索
 	this.search=function(page,rows,searchEntity){
 		return $http.post('/contentCategory/search.do?page='+page+"&rows="+rows, searchEntity);
-	}    	
+	}
+	//列表展示
+	this.selectContentCategoryOptionList=function () {
+        return $http.get('/contentCategory/contentCategoryOptionList.do');
+    }
 });
