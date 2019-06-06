@@ -24,7 +24,7 @@
     <dependencies>
         <dependency>
             <groupId>com.pinyougou.parent</groupId>
-            <artifactId>pinyougou-content-interface</artifactId>
+            <artifactId>pinyougou-search-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
