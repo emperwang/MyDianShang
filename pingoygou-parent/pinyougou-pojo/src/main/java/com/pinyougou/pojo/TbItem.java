@@ -4,7 +4,6 @@ import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.solr.core.mapping.Dynamic;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class TbItem implements Serializable {
 
     private String sellPoint;
     @Field("item_price")
-    private BigDecimal price;
+    private Double price;
 
     private Integer stockCount;
 
@@ -36,9 +35,9 @@ public class TbItem implements Serializable {
 
     private String itemSn;
 
-    private BigDecimal costPirce;
+    private Double costPirce;
 
-    private BigDecimal marketPrice;
+    private Double marketPrice;
 
     private String isDefault;
     @Field("item_goodsid")
@@ -91,11 +90,11 @@ public class TbItem implements Serializable {
         this.sellPoint = sellPoint == null ? null : sellPoint.trim();
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -171,19 +170,19 @@ public class TbItem implements Serializable {
         this.itemSn = itemSn == null ? null : itemSn.trim();
     }
 
-    public BigDecimal getCostPirce() {
+    public Double getCostPirce() {
         return costPirce;
     }
 
-    public void setCostPirce(BigDecimal costPirce) {
+    public void setCostPirce(Double costPirce) {
         this.costPirce = costPirce;
     }
 
-    public BigDecimal getMarketPrice() {
+    public Double getMarketPrice() {
         return marketPrice;
     }
 
-    public void setMarketPrice(BigDecimal marketPrice) {
+    public void setMarketPrice(Double marketPrice) {
         this.marketPrice = marketPrice;
     }
 
@@ -249,5 +248,35 @@ public class TbItem implements Serializable {
 
     public void setSeller(String seller) {
         this.seller = seller == null ? null : seller.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TbItem{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", sellPoint='" + sellPoint + '\'' +
+                ", price=" + price +
+                ", stockCount=" + stockCount +
+                ", num=" + num +
+                ", barcode='" + barcode + '\'' +
+                ", image='" + image + '\'' +
+                ", categoryid=" + categoryid +
+                ", status='" + status + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", itemSn='" + itemSn + '\'' +
+                ", costPirce=" + costPirce +
+                ", marketPrice=" + marketPrice +
+                ", isDefault='" + isDefault + '\'' +
+                ", goodsId=" + goodsId +
+                ", sellerId='" + sellerId + '\'' +
+                ", cartThumbnail='" + cartThumbnail + '\'' +
+                ", category='" + category + '\'' +
+                ", brand='" + brand + '\'' +
+                ", spec='" + spec + '\'' +
+                ", seller='" + seller + '\'' +
+                ", mapSpec=" + mapSpec +
+                '}';
     }
 }
