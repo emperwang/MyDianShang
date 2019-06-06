@@ -41,7 +41,7 @@ public class ImportSolrData {
         "item_category": "手机",
         "item_brand": "三星",
         "item_seller": "三星",
-        "item_spec_网络": "联通3G",
+        "item_spec_网络": "联通3G",   // 就是操作此动态字段
         "item_spec_机身内存": "16G",
         "_version_": 1635570240376012800
          */
