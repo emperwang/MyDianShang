@@ -5,6 +5,7 @@ import com.pinyougou.pojo.TbItem;
 import com.pinyougou.search.service.ItemSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.core.query.*;
 import org.springframework.data.solr.core.query.result.*;
@@ -34,29 +35,34 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 
         // 2.分组查询商品分类列表
         List<String> strings = searchCategoryList(keywords);
-        map.put("categoryList",strings);
+        resultes.put("categoryList",strings);
         return resultes;
     }
     // 分类查询
     private List<String> searchCategoryList(Map keywords){
-        List<String> list = new ArrayList<>();
-        Query query = new SimpleQuery("*:*");
-        // 设置查询关键字
-        Criteria criteria = new Criteria("item_keywords").is(keywords.get("keywords"));
+        List<String> list=new ArrayList();
+        Query query=new SimpleQuery();
+        //按照关键字查询
+        Criteria criteria=new Criteria("item_keywords").is(keywords.get("keywords"));
         query.addCriteria(criteria);
-        // 添加分组的field
-        GroupOptions groupOptions = new GroupOptions().addGroupByField("item_category");
+        //设置分组选项
+        GroupOptions groupOptions=new GroupOptions().addGroupByField("item_category");
+        groupOptions.setOffset(0);
+        groupOptions.setLimit(20);
         query.setGroupOptions(groupOptions);
-        // 获取分组页
-        GroupPage<TbItem> groupPage = solrTemplate.queryForGroupPage(COLLECTION, query, TbItem.class);
-        // 获取分组结果对象
-        GroupResult<TbItem> groupResult = groupPage.getGroupResult("item_category");
-        // 获取分组入口集合
-        Page<GroupEntry<TbItem>> entries = groupResult.getGroupEntries();
-        for (GroupEntry<TbItem> entry : entries) {
-            list.add(entry.getGroupValue());   // 将分组结果添加到列表中
+        //得到分组页
+        GroupPage<TbItem> page = solrTemplate.queryForGroupPage(COLLECTION,query, TbItem.class);
+        //根据列得到分组结果集
+        GroupResult<TbItem> groupResult = page.getGroupResult("item_category");
+        //得到分组结果入口页
+        Page<GroupEntry<TbItem>> groupEntries = groupResult.getGroupEntries();
+        //得到分组入口集合
+        List<GroupEntry<TbItem>> content = groupEntries.getContent();
+        for(GroupEntry<TbItem> entry:content){
+            list.add(entry.getGroupValue());//将分组结果的名称封装到返回值中
         }
         return list;
+
     }
 
     // 高亮查询
