@@ -22,7 +22,7 @@ public class ViewTbItem implements Serializable {
     private Integer num;
 
     private String barcode;
-    @Field("")
+    @Field("item_image")
     private String image;
 
     private Long categoryid;
@@ -40,7 +40,7 @@ public class ViewTbItem implements Serializable {
     private Double marketPrice;
 
     private String isDefault;
-    @Field("")
+    @Field("item_goodsid")
     private Long goodsId;
 
     private String sellerId;
