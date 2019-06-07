@@ -13,6 +13,7 @@ import com.pinyougou.mapper.TbItemCatMapper;
 import com.pinyougou.pojo.TbItemCat;
 import com.pinyougou.pojo.TbItemCatExample;
 import com.pinyougou.pojo.TbItemCatExample.Criteria;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 
@@ -140,12 +141,28 @@ public class ItemCatServiceImpl implements ItemCatService {
 		return new PageResult(total,list);
 	}
 
+	@Autowired
+	private RedisTemplate redisTemplate;
+
+	/**
+	 * 并且缓存对应的typeid，name为key
+	 * @param parentId 父节点的id
+	 * @return
+	 */
 	@Override
 	public List<TbItemCat> findByParentId(Long parentId) {
 		TbItemCatExample example = new TbItemCatExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andParentIdEqualTo(parentId);
 		List<TbItemCat> lists = itemCatMapper.selectByExample(example);
+		// 找出所有，并进行缓存
+		List<TbItemCat> all = findAll();
+		for (TbItemCat itemCat : all) {
+			String name = itemCat.getName();
+			Long typeId = itemCat.getTypeId();
+			redisTemplate.boundHashOps("itemCat").put(name,typeId);
+		}
+		System.out.println("itemCat's typeid 缓存成功");
 		return lists;
 	}
 
