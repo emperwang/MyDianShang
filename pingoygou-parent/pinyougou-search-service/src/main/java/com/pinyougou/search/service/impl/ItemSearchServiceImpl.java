@@ -6,6 +6,7 @@ import com.pinyougou.search.service.ItemSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.core.query.*;
 import org.springframework.data.solr.core.query.result.*;
@@ -36,8 +37,29 @@ public class ItemSearchServiceImpl implements ItemSearchService {
         // 2.分组查询商品分类列表
         List<String> strings = searchCategoryList(keywords);
         resultes.put("categoryList",strings);
+
+        // 3. 获取缓存中的brand和spec列表数据
+        String category = strings.get(0);
+        Map map1 = searchBrandAndSpecList(category);
+        resultes.putAll(map1);
         return resultes;
     }
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    private Map searchBrandAndSpecList(String category){
+        Map map = new HashMap();
+        // 1. 获取category对应的typeId
+        Long typeId = (Long) redisTemplate.boundHashOps("itemCat").get(category);
+        if (typeId != null){
+            List brandList = (List) redisTemplate.boundHashOps("brandList").get(typeId);
+            List specList = (List) redisTemplate.boundHashOps("specList").get(typeId);
+            map.put("brandList",brandList);
+            map.put("specList",specList);
+        }
+        return map;
+    }
+
     // 分类查询
     private List<String> searchCategoryList(Map keywords){
         List<String> list=new ArrayList();
