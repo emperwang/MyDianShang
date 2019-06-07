@@ -107,7 +107,7 @@ public class GoodsServiceImpl implements GoodsService {
         } else { //不启用规格
             TbItem item = new TbItem();
             item.setTitle(goods.getGoodsName()); //名字和商品名字一样
-            item.setPrice(goods.getPrice()); //价格
+            item.setPrice(goods.getPrice().doubleValue()); //价格
             item.setNum(9999); //库存
             item.setStatus("1");//状态
             item.setIsDefault("1");//默认
